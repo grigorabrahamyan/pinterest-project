@@ -23,8 +23,16 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function Sidebar() {
+
+export default function Sidebar(props) {
     const classes = useStyles();
+
+    function editProfileHandelClick(v) {
+        console.log(v);
+        console.log(v.target);
+        console.log(v.target.value);
+    };
+
 
     return (
         <Router>
@@ -32,7 +40,7 @@ export default function Sidebar() {
                 component="nav"
                 className={classes.root}
             >
-                <ListItem button>
+                <ListItem button onClick={(editPr) => editProfileHandelClick(editPr)}>
                     <ListItemIcon>
                         <Link to="/">
                             <EditIcon />
@@ -40,7 +48,7 @@ export default function Sidebar() {
                     </ListItemIcon>
                     <ListItemText primary="Edit profile" />
                 </ListItem>
-                <ListItem button>
+                <ListItem button onClick={(accountSt) => editProfileHandelClick(accountSt)}>
                     <ListItemIcon>
                         <Link to="/about">
                             <AccountBoxIcon />
