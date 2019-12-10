@@ -32,7 +32,7 @@ export default class User extends React.Component{
         return (
             <div>
                 <Sidebar />
-                <UserInformation/>
+                <UserInformation />
             </div>
             )
     }
