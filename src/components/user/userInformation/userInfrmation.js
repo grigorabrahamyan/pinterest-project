@@ -5,8 +5,8 @@ import EditProfile from "../EditProfile/editProfile";
 export default function UserInformation(props) {
     return (
         <div>
+            <AccountSettings />
             <EditProfile/>
-            {/*<AccountSettings />*/}
         </div>
     )
 }
