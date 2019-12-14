@@ -1,8 +1,7 @@
 import React from "react";
-//import TextField from "@material-ui/core/TextField";
 import "./search.css";
 
-function Search() {
+export default function Search() {
   return (
       <div>
         <form>
@@ -18,4 +17,3 @@ function Search() {
   );
 }
 
-export default Search;

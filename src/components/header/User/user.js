@@ -4,7 +4,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import UserAvatar from "../Avatar/avatar"
 
-function User() {
+export default function User() {
   return (
     <div className="myPage">
         <UserMenu />
@@ -33,7 +33,7 @@ function SimpleMenu() {
   return (
     <div>
       <div aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}  >
-        <div className="forUser">User</div>
+        <div>User</div>
         
       </div>
       <Menu
@@ -44,11 +44,9 @@ function SimpleMenu() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>Settings</MenuItem>
-        <MenuItem onClick={handleClose}>Edit profil</MenuItem>
+        <MenuItem onClick={handleClose}>Edit profile</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>
   );
 }
-
-export default User;

@@ -2,18 +2,19 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import "./home.css";
+import HeaderBtn from "../HeaderBtn/headerBtn";
 
 
-function Home() {
+function HomeHeader() {
   return (
     <div className="home">
       <SvgIconsSize />
-      <p>Home</p>
+      <HeaderBtn btnText="Home"/>
     </div>
   );
 }
 
-export default Home;
+export default HomeHeader;
 
 
 const useStyles = makeStyles(theme => ({

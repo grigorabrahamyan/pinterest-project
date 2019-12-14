@@ -10,7 +10,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import EditIcon from '@material-ui/icons/Edit';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
-
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',

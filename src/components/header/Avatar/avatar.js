@@ -1,6 +1,7 @@
 import React from "react";
 import Avatar from '@material-ui/core/Avatar';
 import "./avatar.css";
+import userAvatar from "../../../assets/images/userAvatar.png"
 
 function UserAvatar() {
     return (
@@ -13,7 +14,7 @@ function UserAvatar() {
 function ImageAvatars() { 
     return (
       <div className="avatar">
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        <Avatar alt="User avatar" src={userAvatar} />
       </div>
     );
   }

@@ -5,8 +5,5 @@
 }
 
 .home:hover {
-    background-color: #efefef;
-    border: 1px solid white;
-    border-radius: 20px;
     cursor: pointer;
 }
