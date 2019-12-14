@@ -1,0 +1,9 @@
+.home {
+    display: flex;
+    height: 45px;
+    padding-left: 10px;
+}
+
+.home:hover {
+    cursor: pointer;
+}

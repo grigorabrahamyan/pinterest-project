@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function AccountSettingsGeneral() {
+export default function UserSubSection() {
     return (
         <div>
 
