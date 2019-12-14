@@ -1,8 +1,6 @@
 import React from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
-import UserInfoHeaderTitle from "./UserInfoHeaderTitle";
-import UserInfoHeaderSubTitle from "./UserInfoHeaderSubTitle";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
@@ -39,7 +37,21 @@ export default function UserAvatar(props) {
                     </Grid>
                     <Grid item xs={3}>
                         <div>
-                            <Button variant="contained">{props.btnChange}</Button>
+                            <input
+                                accept="image/*"
+                                className={classes.input}
+                                style={{ display: 'none' }}
+                                id="change-button-file"
+                                type="file"
+                            />
+                            <label htmlFor="change-button-file">
+                                <Button
+                                    variant="contained"
+                                    component="span"
+                                    className={classes.button}>
+                                    {props.btnChange}
+                                </Button>
+                            </label>
                         </div>
                     </Grid>
                 </Grid>
