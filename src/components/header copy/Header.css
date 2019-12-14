@@ -1,0 +1,9 @@
+.header {
+    position: fixed;
+    top: 0;
+    border-bottom: 2px solid #efefef;
+    background-color: #ffffff;
+    height: 55px;
+    margin: 0 auto;
+    align-items: center;
+}

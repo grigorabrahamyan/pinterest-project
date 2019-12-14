@@ -1,6 +1,4 @@
-import React from "react";
-import AccountSettings from "../AccountSettings/accountSettings";
-import EditProfile from "../EditProfile/editProfile";
+import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -9,6 +7,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import EditIcon from '@material-ui/icons/Edit';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import Account_settings from "../AccountSettings/accountSettings";
+import Edit_profile from "../EditProfile/editProfile";
 
 
 const useStyles = makeStyles(theme => ({
@@ -22,12 +22,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function UserInformation(props) {
-    const classes = useStyles();
 
-/*    function editProfileHandelClick(v) {
-    };
-    onClick={(accountSt) => editProfileHandelClick(accountSt)}*/
+export default function Sidebar() {
+    const classes = useStyles();
 
     return (
         <Router>
@@ -35,17 +32,17 @@ export default function UserInformation(props) {
                 component="nav"
                 className={classes.root}
             >
-                <ListItem button >
+                <ListItem button>
                     <ListItemIcon>
-                        <Link to="/edit_profile">
+                        <Link to="/">
                             <EditIcon />
                         </Link>
                     </ListItemIcon>
                     <ListItemText primary="Edit profile" />
                 </ListItem>
-                <ListItem button >
+                <ListItem button>
                     <ListItemIcon>
-                        <Link to="/account_settings">
+                        <Link to="/about">
                             <AccountBoxIcon />
                         </Link>
                     </ListItemIcon>
@@ -53,13 +50,18 @@ export default function UserInformation(props) {
                 </ListItem>
             </List>
             <Switch>
-                <Route path="user/AccountSettings/AccountSettingsInformation">
-                    <AccountSettings />
+                <Route path="/main/account_settings">
+                    <Account_settings />
                 </Route>
-                <Route path="user/EditProfile/editProfile">
-                    <EditProfile />
+                <Route path="/main/edit_profile">
+                    <Edit_profile />
                 </Route>
             </Switch>
         </Router>
     );
 }
+
+
+
+
+
