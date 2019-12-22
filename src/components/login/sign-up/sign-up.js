@@ -11,9 +11,11 @@ import Container from '@material-ui/core/Container';
 import FormControlLabelPosition from './form-control-label-position';
 import checkPassword from '../validation/password-validation';
 import validateEmail from '../validation/email-validation';
-import { signUpNewUsers } from '../firebase/func';
+// import { signUpNewUsers } from '../firebase/func';
+import {signUpNewUsersFirstStep} from '../firebase/func';
+import SignUpStepTwo from '../ssign-up-step-two/sign-up-step-two';
 
-const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -45,6 +47,7 @@ export default function SignUp() {
   const [errorPassword, setErrorPassword] = useState(null);
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
+  const[isUserLoginFirstStep, setIsUserLoginFirstStep] = useState(false);
 
   const classes = useStyles();
 
@@ -92,17 +95,25 @@ export default function SignUp() {
   const onClickButtonSignUp = useCallback((event) => {
     event.preventDefault();
     if (firstName.length && lastName.length && age.length && !errorEmail && !errorPassword && !errorConfirmPassword) {
-      signUpNewUsers(firstName, lastName, email, password, gender, age);
-      setFirstname('');
-      setLastName('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-      setGender('male');
-      setAge('');
+      // signUpNewUsers(firstName, lastName, email, password, gender, age);
+      signUpNewUsersFirstStep(email, password);
+      setIsUserLoginFirstStep(true);
     }
     return null;
-  }, [firstName, lastName, age, email, errorEmail, password, gender, errorPassword, errorConfirmPassword]);
+  }, [firstName, lastName, age, email, errorEmail, password, errorPassword, errorConfirmPassword]);
+
+  if(isUserLoginFirstStep) {
+    return (
+      <SignUpStepTwo 
+        firstName = {firstName}
+        lastName = {lastName}
+        gender = {gender}
+        age = {age}
+        email = {email}
+        password = {password}
+      />
+    );
+  };
 
   return (
     <>
@@ -231,7 +242,7 @@ export default function SignUp() {
               className={classes.submit}
               onClick={onClickButtonSignUp}
             >
-              Sign Up
+              next step
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
