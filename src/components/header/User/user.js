@@ -32,12 +32,12 @@ function UserMenu() {
 function SimpleMenu(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    function onAccountSettingsHandleClick() {
+/*    function onAccountSettingsHandleClick() {
         props.history.push('/user/account_settings/');
     }
     function onEditProfileHandleClick() {
         props.history.push('/user/edit_profile/');
-    }
+    }*/
 
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
@@ -60,15 +60,19 @@ function SimpleMenu(props) {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    <MenuItem onClick={onAccountSettingsHandleClick}>
+                    <MenuItem >
                         <Link
-                            to="/accountSettingsInformation">
+                            to="/user/account_settings/">
                             Account Settings
                         </Link>
                     </MenuItem>
 
-                    <MenuItem onClick={onEditProfileHandleClick}>
-                        <Link to="/editProfile">Edit profile</Link>
+                    <MenuItem>
+
+                        <Link
+                            to="/user/edit_profile/">
+                            Edit profile
+                        </Link>
                     </MenuItem>
 
                     <MenuItem
