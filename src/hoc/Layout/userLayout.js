@@ -9,7 +9,9 @@ export default function UserLayout(props) {
     return (
         <div>
             <Header/>
-            <Main/>
+            <Main>
+                <h1>User Layout</h1>
+            </Main>
             <Footer/>
         </div>
     )
