@@ -1,11 +1,18 @@
-import React from "react"
-import Content from "./content";
+import React, {useState} from "react"
+import Login from '../login/index';
 
-export default function Main(props) {
+export default function Main() {
+
     return (
+<<<<<<< HEAD
+        <div >
+            Hello!
+        </div>
+=======
         <main>
-            <Content />
+            {props.children}
         </main>
 
+>>>>>>> cc89f598f2bfc9a0f962d17ec0ec02b1fcbb3825
     )
-}
+};

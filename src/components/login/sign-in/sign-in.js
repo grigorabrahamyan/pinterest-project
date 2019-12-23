@@ -32,7 +32,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SignIn() {
+function SignIn(props) {
+
+  const{changeSignUpSignIn} = props;
 
   const[email, setEmail] = useState('');
   const[errorEmail, setErrorEmail] = useState(false);
@@ -55,6 +57,10 @@ function SignIn() {
     setPassword(event.target.value);
     shortPasswordValidate(event.target.value) ? setErrorPassword(shortPasswordValidate(event.target.value)) : setErrorPassword(false);
 }, []);
+
+const changeSignUp = () => {
+  changeSignUpSignIn();
+}
 
   const handleOnClickSignIn =  useCallback((event) => {
     event.preventDefault();
@@ -79,18 +85,16 @@ const disappearError = useCallback(() => {
 
   return (
     <>
-      <Link to = '/sign-up' >
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          style={{position: 'absolute',
-          marginLeft: '50px', 
-          marginTop: '50px'}}
-        >
-          Sign up
-        </Button>
-      </Link>
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        style={{position: 'absolute',
+        marginLeft: '50px', 
+        marginTop: '50px'}}
+      >
+        Sign up
+      </Button>
       <Container component="main" maxWidth="xs" >
         <CssBaseline />
         <div className={classes.paper} >
@@ -146,11 +150,14 @@ const disappearError = useCallback(() => {
               <Grid item xs>
               </Grid>
               <Grid item>
-                <Link to = '/sign-up' >
-                  <LinkMaterial href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </LinkMaterial>
-                </Link>
+                <LinkMaterial 
+                  href="#" 
+                  variant="body2"
+                  onClick = {changeSignUp}
+                  // onClick = {}
+                >
+                  {"Don't have an account? Sign Up"}
+                </LinkMaterial>
               </Grid>
             </Grid>
           </form>

@@ -1,5 +1,4 @@
 import React from "react";
-
 import UserInformation from "./userInformation/userInfrmation";
 
 export default class User extends React.Component{

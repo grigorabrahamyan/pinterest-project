@@ -9,6 +9,8 @@ import Logo from "./Logo/logo";
 import Grid from "@material-ui/core/Grid";
 import Search from "./Search/search";
 import MyCreate from "./MyCreate/myCreates";
+import AccountSettings from "../user/AccountSettings/AccountSettingsInformation";
+import EditProfile from "../user/EditProfile/editProfile";
 
 const useStyles = makeStyles({
     root: {
@@ -73,6 +75,12 @@ export default function Header(props) {
                 {/*<Route path="/user">*/}
                 {/*    <User />*/}
                 {/*</Route>*/}
+                <Route
+                    path='/user/account_settings'
+                    component={AccountSettings}/>
+                <Route
+                    path='/user/edit_profile'
+                    component={EditProfile}/>
                 <Route path="/">
                     <Home />
                 </Route>
