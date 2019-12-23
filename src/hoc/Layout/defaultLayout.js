@@ -7,7 +7,9 @@ export default function DefaultLayout(props) {
     return (
         <div>
             <Header/>
-            <Main/>
+            <Main>
+                <h1>Default Layout</h1>
+            </Main>
         </div>
     )
 }

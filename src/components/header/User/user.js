@@ -10,6 +10,7 @@ import EditProfile from "../../user/EditProfile/editProfile";
 import history from "../../user/history";
 
 
+
 export default function User() {
     return (
         <div className="myPage">
@@ -31,12 +32,12 @@ function UserMenu() {
 function SimpleMenu(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    function onAccountSettingsHandleClick() {
-        history.push('/user/account_settings/');
+/*    function onAccountSettingsHandleClick() {
+        props.history.push('/user/account_settings/');
     }
     function onEditProfileHandleClick() {
-        history.push('/user/edit_profile/');
-    }
+        props.history.push('/user/edit_profile/');
+    }*/
 
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
@@ -51,7 +52,6 @@ function SimpleMenu(props) {
             <div>
                 <div aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                     <div>User</div>
-
                 </div>
                 <Menu
                     id="simple-menu"
@@ -60,15 +60,19 @@ function SimpleMenu(props) {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    <MenuItem onClick={onAccountSettingsHandleClick}>
+                    <MenuItem >
                         <Link
-                            to="/accountSettingsInformation">
+                            to="/user/account_settings/">
                             Account Settings
                         </Link>
                     </MenuItem>
 
-                    <MenuItem onClick={onEditProfileHandleClick}>
-                        <Link to="/editProfile">Edit profile</Link>
+                    <MenuItem>
+
+                        <Link
+                            to="/user/edit_profile/">
+                            Edit profile
+                        </Link>
                     </MenuItem>
 
                     <MenuItem
@@ -77,21 +81,7 @@ function SimpleMenu(props) {
                     </MenuItem>
                 </Menu>
             </div>
-            <div>
-                <Switch>
-                    <Route
-                        exact path="/"
-                        component={Home}/>
-                    <Route
-                        history = {history}
-                        path='/user/account_settings'
-                        component={AccountSettings}/>
-                    <Route
-                        history = {history}
-                        path='/user/edit_profile'
-                        component={EditProfile}/>
-                </Switch>
-            </div>
-        </>
+         </>
     );
 }
+
