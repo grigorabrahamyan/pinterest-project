@@ -1,6 +1,8 @@
 import firebase from './firebase';
 
 const db = firebase.firestore();
+const storage = firebase.storage();
+
 
 export function topics( nameOfCategory = '' ,id ) {
     const topicData = db.collection('topics').doc(`${id}`);
