@@ -18,7 +18,7 @@ function Item(props) {
         >
             <img className = {isChose ? 'item-img-chose' : 'item-img'} src = {urlImg} alt = {`Category ${name}`} />
             <div class="middle">
-                <div class={isChose ? 'text-chose' : "text"} >{isChose ? `unfollow`.toUpperCase() : `${name}`.toUpperCase()}</div>
+                <div className={isChose ? 'text-chose' : "text"} >{isChose ? `unfollow`.toUpperCase() : `${name}`.toUpperCase()}</div>
             </div>
             {/* <div className = 'item-name'>
                 <Typography>

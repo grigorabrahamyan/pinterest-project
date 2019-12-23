@@ -1,11 +1,11 @@
-import React from "react"
+import React, {useState} from "react"
+import Login from '../login/index';
 
+export default function Main() {
 
-export default function Main(props) {
     return (
-        <main>
+        <div >
             Hello!
-        </main>
-
+        </div>
     )
-}
+};

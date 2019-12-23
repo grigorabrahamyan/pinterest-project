@@ -117,21 +117,19 @@ export default function SignUp() {
 
   return (
     <>
-      <Link to = '/sign-in' >
-        <Button
-          type="submit"
-          // fullWidth
-          variant="contained"
-          color="primary"
-          style={{
-            position: 'absolute',
-            marginLeft: '50px',
-            marginTop: '50px'
-          }}
-        >
-          Sign In
-        </Button>
-      </Link>
+      <Button
+        type="submit"
+        // fullWidth
+        variant="contained"
+        color="primary"
+        style={{
+          position: 'absolute',
+          marginLeft: '50px',
+          marginTop: '50px'
+        }}
+      >
+        Sign In
+      </Button>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -246,11 +244,9 @@ export default function SignUp() {
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link to = '/sign-in' >
-                  <LinkMaterial  href="#" variant="body2" >
-                    Already have an account? Sign in
-                  </LinkMaterial>
-                </Link>
+                <LinkMaterial  href="#" variant="body2" >
+                  Already have an account? Sign in
+                </LinkMaterial>
               </Grid>
             </Grid>
           </form>
