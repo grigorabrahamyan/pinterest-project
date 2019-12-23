@@ -20,21 +20,25 @@ export function images( src = '' ,id ) {
     });
 };
 
-export function signUpNewUsers( firstName = '', lastName = '', email = '', password = '', gender = '', age = '' ) {
-    console.log(firebase.auth());
-    firebase.auth().createUserWithEmailAndPassword(email, password).then((user) => {
-        firebase.auth().onAuthStateChanged(function(user) {
-                const userData = db.collection('users').doc(`${user.uid}`);
-                userData.set({
-                    firstName,
-                    lastName,
-                    email,
-                    password,
-                    gender,
-                    age,
-                });
-          });
-    }).then(() => console.log('Everything is ok!')).catch((error) => console.log(error.message));
+export function signUpNewUsersFinish( firstName = '', lastName = '', email = '', password = '', gender = '', age = '', topicId = [] ) {
+    firebase.auth().onAuthStateChanged((user) => {
+            const userData = db.collection('users').doc(`${user.uid}`);
+            userData.set({
+                firstName,
+                lastName,
+                email,
+                password,
+                gender,
+                age,
+                topicId,
+            });
+        });
+};
+
+export function signUpNewUsersFirstStep( email = '', password = '') {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => console.log('Everything is ok!'))
+        .catch((error) => console.log(error.message));
 };
 
 export function signInExistingUsers(email = '', password = '') {
