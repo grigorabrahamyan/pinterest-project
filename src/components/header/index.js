@@ -1,9 +1,16 @@
 import React from "react"
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import About from "../about";
-import User from "../user";
-import Home from "../home";
+import UserCreates from "../user_creates";
+import User from "./User/user";
+import HomeHeader from "./HomeHeader/home";
+import Home from "../home"
+import Logo from "./Logo/logo";
+import Grid from "@material-ui/core/Grid";
+import Search from "./Search/search";
+import MyCreate from "./MyCreate/myCreates";
+import AccountSettings from "../user/AccountSettings/AccountSettingsInformation";
+import EditProfile from "../user/EditProfile/editProfile";
 
 const useStyles = makeStyles({
     root: {
@@ -25,25 +32,55 @@ export default function Header(props) {
             <header>
                 <nav>
                     <ul className={classes.listStyleNone}>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/about">About</Link>
-                        </li>
-                        <li>
-                            <Link to="/user">User</Link>
-                        </li>
+                        <Grid container spacing={0} className="header">
+                            <Grid item xs={1}>
+                                <li>
+                                    <Link to="/">
+                                        <Logo />
+                                    </Link>
+                                </li>
+                            </Grid>
+                            <Grid item xs={5}>
+                                <li>
+                                    <Search />
+                                </li>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <li>
+                                    <Link to="/">
+                                        <HomeHeader />
+                                    </Link>
+                                </li>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <li>
+                                    <Link to="/user_creates">
+                                        <MyCreate />
+                                    </Link>
+                                </li>
+                            </Grid>
+                            <Grid item xs={1}>
+                                <li>
+                                    <User />
+                                </li>
+                            </Grid>
+                        </Grid>
                     </ul>
                 </nav>
             </header>
             <Switch>
-                <Route path="/about">
-                    <About />
+                <Route path="/user_creates">
+                    <UserCreates />
                 </Route>
-                <Route path="/user">
-                    <User />
-                </Route>
+                {/*<Route path="/user">*/}
+                {/*    <User />*/}
+                {/*</Route>*/}
+                <Route
+                    path='/user/account_settings'
+                    component={AccountSettings}/>
+                <Route
+                    path='/user/edit_profile'
+                    component={EditProfile}/>
                 <Route path="/">
                     <Home />
                 </Route>

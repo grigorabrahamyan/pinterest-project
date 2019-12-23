@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function UserInfoHeaderSubTitle(props) {
-    return (
-        <p>{props.subTitle}</p>
+    return(
+        <h4>props.subTitle</h4>
     )
 }

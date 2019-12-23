@@ -1,0 +1,21 @@
+[debug] [2019-12-18T13:28:00.260Z] ----------------------------------------------------------------------
+[debug] [2019-12-18T13:28:00.263Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Grigor Abrahamyan\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2019-12-18T13:28:00.264Z] CLI Version:   7.9.0
+[debug] [2019-12-18T13:28:00.264Z] Platform:      win32
+[debug] [2019-12-18T13:28:00.264Z] Node Version:  v10.16.3
+[debug] [2019-12-18T13:28:00.266Z] Time:          Wed Dec 18 2019 17:28:00 GMT+0400 (GMT+04:00)
+[debug] [2019-12-18T13:28:00.266Z] ----------------------------------------------------------------------
+[debug] [2019-12-18T13:28:00.266Z] 
+[debug] [2019-12-18T13:28:00.324Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-12-18T13:28:00.324Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Grigor Abrahamyan\Desktop\lesson js\Pinterest-project\pinterestaca
+

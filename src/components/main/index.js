@@ -1,11 +1,11 @@
-import React from "react"
-import Content from "./content";
+import React, {useState} from "react"
+import Login from '../login/index';
 
 export default function Main(props) {
+
     return (
         <main>
-            <Content />
+            {props.children}
         </main>
-
     )
-}
+};

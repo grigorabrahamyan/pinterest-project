@@ -1,5 +1,4 @@
 import React from "react";
-import Sidebar from "./Sidebar/Sidebar"
 import UserInformation from "./userInformation/userInfrmation";
 
 export default class User extends React.Component{
@@ -31,7 +30,6 @@ export default class User extends React.Component{
     render() {
         return (
             <div>
-                <Sidebar />
                 <UserInformation />
             </div>
             )

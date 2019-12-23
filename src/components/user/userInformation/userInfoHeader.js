@@ -11,18 +11,28 @@ const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         maxWidth: 800,
-        width: "100%"
+        width: "100%",
+        flexDirection: "row-reverse",
     },
+    usernameInput: {
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "baseline",
+    },
+    usernameUrl: {
+        padding: "0 .5rem"
+    }
 }));
 
 export default function UserInfoHeader(props) {
     const classes = useStyles();
+    const baseUrl = "www.pinterestaca.am";
     return (
         <div className={classes.root}>
-            <Grid container spacing={1} alignItems="center">
+            <Grid container spacing={2} alignItems="center">
                 <Grid item xs={8}>
                     <UserInfoHeaderTitle title = "Edit profile"/>
-                    <UserInfoHeaderSubTitle subTitle = "Lorem ipsum Lorem ipsum Lorem ipsum" />
+                    <UserInfoHeaderSubTitle subTitle = "People on Pinterest will get to know you with the info below" />
                 </Grid>
                 <Grid item xs={4}>
                     <UserInfoHeaderBtns btnCancel="Cancel" btnDone = "Done"/>
@@ -31,10 +41,23 @@ export default function UserInfoHeader(props) {
                     <UserAvatar btnChange="Change"/>
                 </Grid>
                 <Grid item xs={6}>
-                    <UserInputForm />
+                    <UserInputForm label = "First name" />
                 </Grid>
                 <Grid item xs={6}>
-                    <UserInputForm />
+                    <UserInputForm label = "Last name"/>
+                </Grid>
+                <Grid
+                    item xs={12}
+                    className={classes.usernameInput}
+                >
+                    <span className={classes.usernameUrl}>{baseUrl} /</span>
+                    <UserInputForm label = "Username"/>
+                </Grid>
+                <Grid item xs={12}>
+                    <UserInputForm multiLine = "true" label = "About your profile"/>
+                </Grid>
+                <Grid item xs={12}>
+                    <UserInputForm label = "Location"/>
                 </Grid>
             </Grid>
         </div>

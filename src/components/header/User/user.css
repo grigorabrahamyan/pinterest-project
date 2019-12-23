@@ -1,0 +1,11 @@
+.myPage {
+    display: flex;
+    height: 45px;
+    align-items: center;
+    padding-left: 15px;
+    border-radius: 20px;
+}
+.myPage:hover {
+    background-color: #efefef;
+    cursor: pointer;
+}

@@ -1,17 +1,50 @@
-import React, {Fragment} from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import Header from "./components/header";
-import Main from "./components/main";
-import Footer from "./components/footer";
+import UserLayout from "./hoc/Layout/userLayout";
+import DefaultLayout from "./hoc/Layout/defaultLayout";
+import User from "./components/user";
+import Header from './components/header/index';
+import Main from './components/main/index';
+import TransitionsTooltips from './components/footer/index';
+import Login from './components/login/index';
 
-function App() {
+export default function App() {
+
+  const[logIn, setlogIn] = useState(false);
+
+  function foo() {
+    console.log('privet Armenia')
+    setlogIn(true);
+  }
+
+  if(logIn) {
+      return(
+          <Login />
+      );
+  }
+
   return (
-      <Fragment>
+      <div onClick = {foo} >
         <Header/>
-        <Main/>
-        <Footer/>
-      </Fragment>
+        <Main />
+        <TransitionsTooltips/>
+      </div>
   );
-}
+    // return (
+    //     <>
+    //         {
+    //             (User.isAuthorised) ?
+    //                 (
+    //                     <UserLayout>
 
-export default App;
+    //                     </UserLayout>
+    //                 )
+    //                 : (
+    //                     <DefaultLayout>
+
+    //                     </DefaultLayout>
+    //                 )
+    //         }
+    //     </>
+    // )
+};
