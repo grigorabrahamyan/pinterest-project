@@ -13,9 +13,13 @@ function Login() {
         setSignUp(!signUp);
     }
 
+    const changeSignUpState = () => {
+        setSignUp(!signUp);
+    }
+
     if (signUp) {
         return (
-            <SignUp />
+            <SignUp changeSignUp = {changeSignUpState} />
         );
     }
 

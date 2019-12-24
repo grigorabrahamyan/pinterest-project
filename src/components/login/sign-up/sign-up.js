@@ -35,7 +35,7 @@ export const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
 
   const [firstName, setFirstname] = useState('');
   const [lastName, setLastName] = useState('');
@@ -48,6 +48,8 @@ export default function SignUp() {
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
   const[isUserLoginFirstStep, setIsUserLoginFirstStep] = useState(false);
+
+  const {changeSignUp} = props;
 
   const classes = useStyles();
 
@@ -117,19 +119,6 @@ export default function SignUp() {
 
   return (
     <>
-      <Button
-        type="submit"
-        // fullWidth
-        variant="contained"
-        color="primary"
-        style={{
-          position: 'absolute',
-          marginLeft: '50px',
-          marginTop: '50px'
-        }}
-      >
-        Sign In
-      </Button>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -244,7 +233,11 @@ export default function SignUp() {
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <LinkMaterial  href="#" variant="body2" >
+                <LinkMaterial  
+                  href="#" 
+                  variant="body2" 
+                  onClick = {changeSignUp}
+                >
                   Already have an account? Sign in
                 </LinkMaterial>
               </Grid>

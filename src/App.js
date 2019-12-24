@@ -7,24 +7,28 @@ import Header from './components/header/index';
 import Main from './components/main/index';
 import TransitionsTooltips from './components/footer/index';
 import Login from './components/login/index';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogContent from '@material-ui/core/DialogContent';
 
 export default function App() {
 
-  const[logIn, setlogIn] = useState(false);
+  const[logIn, setlogIn] = useState(0);
 
-  function foo() {
-    console.log('privet Armenia')
-    setlogIn(true);
+  function changeLoginThreeTimes() {
+    setlogIn(logIn + 1);
   }
 
-  // if(logIn) {
-  //     return(
-  //         <Login />
-  //     );
-  // }
+  if(logIn > 3) {
+      return(
+        <Login />
+      );
+  }
 
   return (
-      <div onClick = {foo} >
+      <div onClick = {changeLoginThreeTimes} >
         <Header/>
         <Main />
         <TransitionsTooltips/>
