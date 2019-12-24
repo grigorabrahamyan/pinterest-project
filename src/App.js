@@ -17,11 +17,11 @@ export default function App() {
     setlogIn(true);
   }
 
-  if(logIn) {
-      return(
-          <Login />
-      );
-  }
+  // if(logIn) {
+  //     return(
+  //         <Login />
+  //     );
+  // }
 
   return (
       <div onClick = {foo} >
