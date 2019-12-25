@@ -85,16 +85,6 @@ const disappearError = useCallback(() => {
 
   return (
     <>
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        style={{position: 'absolute',
-        marginLeft: '50px', 
-        marginTop: '50px'}}
-      >
-        Sign up
-      </Button>
       <Container component="main" maxWidth="xs" >
         <CssBaseline />
         <div className={classes.paper} >
