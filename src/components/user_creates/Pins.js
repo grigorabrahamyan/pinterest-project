@@ -8,8 +8,9 @@ import useStyles from "./UseStyles"
 import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import { Autocomplete } from '@material-ui/lab';
 import {DropzoneArea} from "material-ui-dropzone";
+
 
 
 const Pins  = () =>{

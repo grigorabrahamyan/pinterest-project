@@ -8,9 +8,10 @@ import Home from "../home"
 import Logo from "./Logo/logo";
 import Grid from "@material-ui/core/Grid";
 import Search from "./Search/search";
-import MyCreate from "./MyCreate/myCreates";
+import Index from "../user_creates/index"
 import AccountSettings from "../user/AccountSettings/AccountSettingsInformation";
 import EditProfile from "../user/EditProfile/editProfile";
+import MyCreate from "./MyCreate/myCreates";
 
 const useStyles = makeStyles({
     root: {
@@ -54,7 +55,7 @@ export default function Header(props) {
                             </Grid>
                             <Grid item xs={2}>
                                 <li>
-                                    <Link to="/user_creates">
+                                    <Link to="/user/user_creates">
                                         <MyCreate />
                                     </Link>
                                 </li>
@@ -69,7 +70,7 @@ export default function Header(props) {
                 </nav>
             </header>
             <Switch>
-                <Route path="/user_creates">
+                <Route path="/user/user_creates">
                     <UserCreates />
                 </Route>
                 {/*<Route path="/user">*/}

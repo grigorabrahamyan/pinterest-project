@@ -19,9 +19,9 @@ import Topics from "./Topics";
 
 
 export default function Index(){
-    const [name, setName] = useState("Narek Barseghyan");
-    const [followers, setFollowers] = useState(0)
-    const [following, setFollowing] = useState(0)
+    const [name, setName] = useState("Name Surname");
+    const [followers, setFollowers] = useState(0);
+    const [following, setFollowing] = useState(0);
     return(
         <Router>
         <div>
@@ -38,9 +38,9 @@ export default function Index(){
             <div>
             </div>
             <Navbar/>
-                <Route path="/Boards" component={Boards}/>
-                <Route path="/Pins" component={Pins}/>
-                <Route path="/Topics" component={Topics}/>
+                <Route path="/user/user_creates/Boards" component={Boards}/>
+                <Route path="/user/user_creates/Pins" component={Pins}/>
+                <Route path="/user/user_creates/Topics" component={Topics}/>
         </div>
         </Router>
     )
@@ -50,15 +50,15 @@ export default function Index(){
 const Navbar  = () =>{
     return(
         <div className="Navbar" >
-            <NavLink className="text-decoration" to="Boards"><Button  variant="contained" color="secondary">
+            <NavLink className="text-decoration" to="/user/user_creates/Boards"><Button  variant="contained" color="secondary">
                 Boards
             </Button>
             </NavLink>
             <></>
-            <NavLink className="text-decoration" to="Pins"><Button variant="contained" color="secondary">
+            <NavLink className="text-decoration" to="/user/user_creates/Pins"><Button variant="contained" color="secondary">
                   Pins
             </Button>  </NavLink>
-            <NavLink className="text-decoration" to="Topics"><Button variant="contained" color="secondary">
+            <NavLink className="text-decoration" to="/user/user_creates/Topics"><Button variant="contained" color="secondary">
                 Topics
             </Button>  </NavLink>
         </div>

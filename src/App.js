@@ -24,7 +24,7 @@ export default function App() {
   }
 
   return (
-      <div onClick = {foo} >
+      <div/* onClick = {foo}*/ >
         <Header/>
         <Main />
         <TransitionsTooltips/>
