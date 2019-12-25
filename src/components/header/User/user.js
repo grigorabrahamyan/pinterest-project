@@ -68,7 +68,6 @@ function SimpleMenu(props) {
                     </MenuItem>
 
                     <MenuItem>
-
                         <Link
                             to="/user/edit_profile/">
                             Edit profile

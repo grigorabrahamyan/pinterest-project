@@ -69,7 +69,9 @@ export default function Header(props) {
                 </nav>
             </header>
             <Switch>
-                <Route path="/user_creates">
+                <Route
+                    exact
+                    path="/user_creates">
                     <UserCreates />
                 </Route>
                 {/*<Route path="/user">*/}
@@ -79,9 +81,12 @@ export default function Header(props) {
                     path='/user/account_settings'
                     component={AccountSettings}/>
                 <Route
+                    exact
                     path='/user/edit_profile'
                     component={EditProfile}/>
-                <Route path="/">
+                <Route
+                    exact
+                    path="/">
                     <Home />
                 </Route>
             </Switch>
