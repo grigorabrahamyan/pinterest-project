@@ -8,7 +8,6 @@ import HeaderBtn from "../HeaderBtn/headerBtn";
 function HomeHeader() {
   return (
     <div className="home">
-      <SvgIconsSize />
       <HeaderBtn btnText="Home"/>
     </div>
   );

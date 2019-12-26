@@ -7,6 +7,8 @@ const useStyles = makeStyles(theme => ({
         margin: "0 1rem"
     },
     btnWrapper: {
+        display: "flex",
+        padding: "0 1rem",
         textAlign: "right",
     }
 }));

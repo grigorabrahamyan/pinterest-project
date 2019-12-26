@@ -4,11 +4,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import UserAvatar from "../Avatar/avatar"
 import {Link, Route, Switch} from "react-router-dom";
-import Home from "../../home";
-import AccountSettings from "../../user/AccountSettings/AccountSettingsInformation";
-import EditProfile from "../../user/EditProfile/editProfile";
-import history from "../../user/history";
-
+import {makeStyles} from "@material-ui/styles";
 
 
 export default function User() {
@@ -26,7 +22,14 @@ function UserMenu() {
     );
 }
 
+const useStyles = makeStyles(theme => ({
+    menuDropdown: {
+        "": {
+            top: "50px!important",
+        }
 
+    },
+}));
 
 
 function SimpleMenu(props) {
@@ -46,6 +49,7 @@ function SimpleMenu(props) {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const classes = useStyles();
 
     return (
         <>
@@ -59,6 +63,7 @@ function SimpleMenu(props) {
                     keepMounted
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
+                    className={classes.menuDropdown}
                 >
                     <MenuItem >
                         <Link
