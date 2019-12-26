@@ -28,7 +28,7 @@ export default function App() {
   }
 
   return (
-      <div onClick = {changeLoginThreeTimes} >
+      <div /*onClick = {changeLoginThreeTimes}*/ >
         <Header/>
         <Main />
         <TransitionsTooltips/>

@@ -1,18 +1,8 @@
 import React, { useState } from 'react';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import SvgIcon from '@material-ui/core/SvgIcon'
 import "./Pinterest.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-// import Profile from "./../Profile/Profile"
 import {NavLink} from "react-router-dom";
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import Checkbox from '@material-ui/core/Checkbox';
 import Boards from "./Boards";
 import Pins from "./Pins";
 import Topics from "./Topics";

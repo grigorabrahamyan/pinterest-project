@@ -27,6 +27,13 @@ export default function UserInputForm(props) {
     if (props.multyLine){
         multiLine = props.multyLine;
     }
+
+    const onInputHandleChange = (e)=> {
+        props.onInputChange(e.target.value);
+
+    };
+    let value = props.value;
+
     return (
         <div>
             <FormControlLabel
@@ -42,7 +49,9 @@ export default function UserInputForm(props) {
                         className={classes.textField}
                         margin="dense"
                         variant="outlined"
+                        value={value}
                         multiline={multiLine}
+                        onChange={onInputHandleChange}
                     />
                 }
                  />

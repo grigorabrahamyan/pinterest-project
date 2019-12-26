@@ -51,14 +51,6 @@ export default function UserInformation(props) {
                     <ListItemText primary="Account settings" />
                 </ListItem>
             </List>
-            <Switch>
-                <Route path="user/AccountSettings/AccountSettingsInformation">
-                    <AccountSettings />
-                </Route>
-                <Route path="user/EditProfile/editProfile">
-                    <EditProfile />
-                </Route>
-            </Switch>
         </Router>
     );
 }
