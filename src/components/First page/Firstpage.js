@@ -1,68 +1,105 @@
-import React from "react";
-import firebase from '../login/firebase/firebase'
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import TitlebarGridList from './Gridforfirspage'
+import React, {useEffect, useState} from 'react';
+//import tileData from './tileData';\
+import firebase from '../login/firebase/firebase';
+import './FirstPage.css'
+
+import { makeStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/Info';
+//import tileData from './tileData';
+
+const useStyles = makeStyles(theme => ({
+	root: {
+	  display: 'flex',
+	  flexWrap: 'wrap',
+	  justifyContent: 'space-around',
+	  overflow: 'hidden',
+	  backgroundColor: theme.palette.background.paper,
+	},
+	gridList: {
+	  width: '100%',
+	  height: 450,
+	},
+	icon: {
+	  color: 'rgba(255, 255, 255, 0.54)',
+	},
+	img:{
+  width:'20%'
+	}
+  }));
 
 
 
-const storage = firebase.storage();
 const db = firebase.firestore();
 
-var storageRef = storage.ref()
-
-var imagesRef = storageRef.child('gs://pinteresttest-18063.appspot.com/Cars/cars 1.jpg');
-
-console.log(imagesRef)
-
-
-
-
-/////////////////////////////////////////////////////////////////
-// let example = db.collection('users').doc(
-//     'Nor Doc'
-//     ).set({
-//         name: "San Francisco", state: "CA", country: "USA",
-//         capital: false, population: 860000,
-//         regions: ["west_coast", "norcal"] })
-
-
-// let nordoc = db.collection('users').doc(
-//     'Nor Doc'
-//     )
-
-//     nordoc.get().then(function(doc) {
-//         if (doc.exists) {
-//             console.log("Document data:", doc.data());
-//         } else {
-//             // doc.data() will be undefined in this case
-//             console.log("No such document!");
-//         }
-//     }).catch(function(error) {
-//         console.log("Error getting document:", error);
-//     });
-////////////////////////////////////////////////////////////////////////////////////////////
-
-function firstpage() {
-        return (
-                <div>
-                        <TitlebarGridList></TitlebarGridList>
-                    <h1>AAAAAAAAAAAAAAAAAAAAA</h1>    //map
-                    <img src={imagesRef} alt='nkar chka'/>
-                    <img src={imagesRef} alt='nkar chka'/>
-                    <img src={imagesRef} alt='nkar chka'/>
-                    <img src={imagesRef} alt='nkar chka'/>
-                    <img src={imagesRef} alt='nkar chka'/>
-                    <img src={imagesRef} alt='nkar chka'/>
-                    <img src={imagesRef} alt='nkar chka'/>
-                    <img src={imagesRef} alt='nkar chka'/>
-                    <img src={imagesRef} alt='nkar chka'/>
-                    <img src={imagesRef} alt='nkar chka'/>
-                    <img src={imagesRef} alt='nkar chka'/>
-                    <img src={imagesRef} alt='nkar chka'/>
-
-                </div>
-        )
+async function getRandomImages() {
+	const randomImagesData = await db.collection('images').get();
+	return randomImagesData;
 }
 
-export default firstpage;
+export default function GetArr() {
+	
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+	const arr = [];
+	getRandomImages().then(doc => {
+		doc.forEach(img => {
+			arr.push(
+				{
+					imgUrl: img.data().imgUrl,
+					nameOfCategory: img.data().topicId,
+					id: img.data().userId,
+				}
+			)
+		});
+		setData(arr);
+	});
+	
+  }, []);
+  
+  console.log(data);
+
+
+// 	return (
+// 		<div className='fpmain'>
+// 			{data.map(img => (
+// 				<img src={img.imgUrl} alt="Nkar" />))
+// 			}
+// 		</div>
+// 	);
+// }
+
+// export default GetArr;
+
+	const classes = useStyles();
+  
+	return (
+	  <div className={classes.root}>
+		<GridList cellHeight={180} className={classes.gridList}>
+		  <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
+			<ListSubheader component="div">December</ListSubheader>
+		  </GridListTile>
+		  {data.map(tile => (
+			<GridListTile key={tile.imgUrl} style={{width: '20%'}} >
+			  <img src={tile.imgUrl} alt={tile.title} />
+			  <GridListTileBar
+				title={tile.title}
+				subtitle={<span>by: {tile.author}</span>}
+				actionIcon={
+				  <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
+					<InfoIcon />
+				  </IconButton>
+				}
+			  />
+			</GridListTile>
+		  ))}
+		</GridList>
+	  </div>
+	);
+  
+}

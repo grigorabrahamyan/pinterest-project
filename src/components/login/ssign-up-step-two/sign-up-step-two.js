@@ -47,6 +47,7 @@ function SignUpStepTwo(props) {
             });
             setTopics(arr);
             setIsLoading(false);
+            console.log(arr)
         });
     },[]);
 

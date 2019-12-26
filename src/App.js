@@ -7,6 +7,7 @@ import Header from './components/header/index';
 import Main from './components/main/index';
 import TransitionsTooltips from './components/footer/index';
 import Login from './components/login/index';
+import GetArr from './components/First page/Firstpage'
 
 export default function App() {
 
@@ -24,10 +25,11 @@ export default function App() {
   }
 
   return (
-      <div onClick = {foo} >
+      <div  >
         <Header/>
-        <Main />
-        <TransitionsTooltips/>
+        <GetArr/>
+
+        
       </div>
   );
     // return (
