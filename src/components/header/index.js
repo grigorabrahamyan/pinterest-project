@@ -13,6 +13,8 @@ import AccountSettings from "../user/AccountSettings/AccountSettingsInformation"
 import EditProfile from "../user/EditProfile/editProfile";
 import MyCreate from "./MyCreate/myCreates";
 import UserSettingsLayout from "../../hoc/Layout/userSettingsLayout";
+import UserLayout from "../../hoc/Layout/userLayout";
+import Pins from "../user_creates/Pins";
 
 
 const useStyles = makeStyles({
@@ -85,6 +87,7 @@ export default function Header(props) {
                 </Route>
                 <AppRoute exact path="/user/account_settings" layout={UserSettingsLayout} component={AccountSettings} />
                 <AppRoute exact path="/user/edit_profile" layout={UserSettingsLayout} component={EditProfile} />
+
                 <Route
                     exact
                     path="/">

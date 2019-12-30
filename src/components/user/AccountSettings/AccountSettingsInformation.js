@@ -8,6 +8,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import UserSubSectionTitle from "../userInformation/userSubSectionTitle";
 import UserLocationSelect from "./userLocationSelect";
 import UserGenderSelect from "./userGenderSelect";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -23,6 +24,14 @@ const useStyles = makeStyles(theme => ({
     },
     usernameUrl: {
         padding: "0 .5rem"
+    },
+    userHeaderBtn: {
+        margin: "0 1rem"
+    },
+    btnWrapper: {
+        display: "flex",
+        padding: "0 1rem",
+        textAlign: "right",
     }
 }));
 
@@ -40,12 +49,20 @@ export default function AccountSettings(props) {
                         subTitle = "Set your login preferences, help us personalize your experience and make big account changes here" />
                 </Grid>
                 <Grid item xs={4}>
-                    <UserInfoHeaderBtns
-                        btnCancel="Cancel"
-                        btnDone = "Done"/>
+                    <div className={classes.btnWrapper}>
+                        <Button
+                            className={classes.userHeaderBtn}
+                            variant="contained">
+                            Cancel
+                        </Button>
+                        <Button
+                            /*onClick={onSaveBtnClick} */
+                            className={classes.userHeaderBtn}
+                            variant="contained">
+                            Done
+                        </Button>
+                    </div>
                 </Grid>
-
-
                 <Grid item xs={12}>
                     <UserSubSectionTitle subTitle = "Basic information"/>
                     <UserInputForm label = "Email address" />
