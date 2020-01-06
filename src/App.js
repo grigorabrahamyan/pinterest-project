@@ -21,18 +21,18 @@ export default function App() {
     setlogIn(logIn + 1);
   }
 
-  if(logIn > 3) {
-      return(
-        <Login />
-      );
-  }
+  // if(logIn > 3) {
+  //     return(
+  //       <Login />
+  //     );
+  // }
 
-  return (
-      <div onClick = {changeLoginThreeTimes} >
-        <Header/>
-        <Main />
-        <TransitionsTooltips/>
-      </div>
+    return (
+        <div onClick={changeLoginThreeTimes}>
+            <Header/>
+            <Main/>
+            <TransitionsTooltips/>
+        </div>
   );
     // return (
     //     <>
