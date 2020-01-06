@@ -32,6 +32,9 @@ export default function App() {
       <div onClick = {changeLoginThreeTimes} >
         <Header/>
         <GetArr/>
+        <div>
+          <h1>HELLO! It is Footer</h1>
+        </div>
 
         
       </div>
