@@ -8,10 +8,8 @@ import useStyles from "./UseStyles"
 import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { Autocomplete } from '@material-ui/lab';
+import { Autocomplete, lab } from '@material-ui/lab';
 import {DropzoneArea} from "material-ui-dropzone";
-
-
 
 const Pins  = () =>{
     const classes = useStyles();
@@ -102,7 +100,6 @@ const Pins  = () =>{
     )
 }
 export default Pins
-
 
 const categories = [
     { title: ' Ideas for the house'},

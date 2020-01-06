@@ -4,18 +4,15 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import "./home.css";
 import HeaderBtn from "../HeaderBtn/headerBtn";
 
-
 function HomeHeader() {
   return (
     <div className="home">
-      <SvgIconsSize />
       <HeaderBtn btnText="Home"/>
     </div>
   );
 }
 
 export default HomeHeader;
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,15 +27,5 @@ function HomeIcon(props) {
     <SvgIcon {...props}>
       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
     </SvgIcon>
-  );
-}
-
-function SvgIconsSize() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      <HomeIcon style={{ fontSize: 40 }} />
-    </div>
   );
 }

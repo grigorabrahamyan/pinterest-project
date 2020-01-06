@@ -12,4 +12,4 @@ export default function DefaultLayout(props) {
             </Main>
         </div>
     )
-}
+};

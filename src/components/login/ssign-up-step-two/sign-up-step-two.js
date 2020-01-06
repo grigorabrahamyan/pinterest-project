@@ -6,6 +6,10 @@ import Item from './item';
 import Button from '@material-ui/core/Button';
 import {useStyles} from '../sign-up/sign-up';
 import {signUpNewUsersFinish} from '../firebase/func';
+import {signInExistingUsers} from '../firebase/func';
+import {signUpNewUsersFirstStep} from '../firebase/func';
+import {signUpNewUser} from '../firebase/func';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const db = firebase.firestore();
 
@@ -16,7 +20,7 @@ async function getTopics() {
 
 function SignUpStepTwo(props) {
 
-    const{firstName, lastName, gender, age, email, password} = props;
+    const{firstName, lastName, gender, age, email, password, changeLoginStateSignUp} = props;
 
     const classes = useStyles();
 
@@ -25,6 +29,7 @@ function SignUpStepTwo(props) {
     const[userTopicsId, setUsersTopicsId] = useState([]);
 
     function getUsersTopicsId(id){
+        
         if (!userTopicsId.includes(id)) {
             setUsersTopicsId([...userTopicsId, id]);
         } else {
@@ -51,9 +56,21 @@ function SignUpStepTwo(props) {
     },[]);
 
     function signUpStepTwoFinish(){
-        if (userTopicsId.length > 4) {
-            signUpNewUsersFinish(firstName, lastName, email, password, gender, age, userTopicsId);
-        };
+        changeLoginStateSignUp();
+        signUpNewUser(firstName, lastName, email, password, gender, age, userTopicsId);
+    };
+
+    if (isLoading) {
+        return (
+            <div className = 'container' >
+                <div className = 'loading' >
+                    <CircularProgress 
+                        disableShrink 
+                        color = 'secondary'
+                    />
+                </div>
+            </div>
+        );
     };
 
     return (
@@ -64,9 +81,9 @@ function SignUpStepTwo(props) {
             >
                 Tell about your interests...
             </Typography>
-            <div className = 'middle-div' ></div>
+            <div className = 'middle-div' ></div> 
             <div className = 'items' >
-                { isLoading ? <h3>Loading...</h3> : topics.map( (item) => {
+                { topics.map( (item) => {
                     return(
                     <Item
                         urlImg = {item.avatarUrl}
@@ -82,7 +99,7 @@ function SignUpStepTwo(props) {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick = {signUpStepTwoFinish}
+              onClick = {userTopicsId.length > 4 && signUpStepTwoFinish}
             >
             {userTopicsId.length < 5 ?
                 `You must choose minimum ${topicsCount} topics` : 

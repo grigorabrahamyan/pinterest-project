@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.search {
+    background: none;
+    width: 100%;
+}
+
+.input-one {
+    grid-column-start: 1;
+    grid-column-end: 14;
+}
+
+.input-first {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px 0 0 10px;
+    border: 1px solid #ccc;
+}
+
+.input-first:focus {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px 0 0 10px;
+    border: 1.7px solid #1976d2;
+}
+
+.input-second {
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 0 10px 10px 0;
+    border: 1px solid #ccc;
+    border-left: none;
+}
+
+.input-second:focus {
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 0 10px 10px 0;
+    border: 1.7px solid #1976d2;
+}
+
+.input-first:focus {
+    outline: none;
+}
+
+.input-second:focus {
+    outline: none;
+}
+
+.check-topics {
+    width: 100%;
+    height: 500px;
+    margin-top: 5px;
+    border-radius: 10px;
+    background-color: brown;
+    transition: 1000ms;
+}
+
+.checkbox-item {
+    width: 100%;
+    height: 50px;
+}
+
+.chackbox-item {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

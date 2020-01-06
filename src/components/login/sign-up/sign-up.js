@@ -11,7 +11,6 @@ import Container from '@material-ui/core/Container';
 import FormControlLabelPosition from './form-control-label-position';
 import checkPassword from '../validation/password-validation';
 import validateEmail from '../validation/email-validation';
-// import { signUpNewUsers } from '../firebase/func';
 import {signUpNewUsersFirstStep} from '../firebase/func';
 import SignUpStepTwo from '../ssign-up-step-two/sign-up-step-two';
 
@@ -49,7 +48,7 @@ export default function SignUp(props) {
   const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
   const[isUserLoginFirstStep, setIsUserLoginFirstStep] = useState(false);
 
-  const {changeSignUp} = props;
+  const {changeSignUp, inishalLoginSignUp, changeLoginStateLogin} = props;
 
   const classes = useStyles();
 
@@ -98,7 +97,6 @@ export default function SignUp(props) {
     event.preventDefault();
     if (firstName.length && lastName.length && age.length && !errorEmail && !errorPassword && !errorConfirmPassword) {
       // signUpNewUsers(firstName, lastName, email, password, gender, age);
-      signUpNewUsersFirstStep(email, password);
       setIsUserLoginFirstStep(true);
     }
     return null;
@@ -113,6 +111,8 @@ export default function SignUp(props) {
         age = {age}
         email = {email}
         password = {password}
+        inishalLoginSignUpStepTwo = {inishalLoginSignUp}
+        changeLoginStateSignUp = {changeLoginStateLogin}
       />
     );
   };
