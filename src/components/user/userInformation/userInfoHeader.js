@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useState, useEffect} from "react";
 import UserInfoHeaderTitle from "./UserInfoHeaderTitle";
 import UserInfoHeaderSubTitle from "./UserInfoHeaderSubTitle";
 import makeStyles from "@material-ui/core/styles/makeStyles";
@@ -7,7 +7,9 @@ import UserAvatar from "./useravatar";
 import UserInputForm from "./userInputForm";
 import "../EditProfile/editProfileFirebase"
 import Button from "@material-ui/core/Button";
-import firebase from "firebase";
+import {db} from "../EditProfile/editProfileFirebase";
+import {Link} from "react-router-dom";
+import * as firebase from "firebase";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -31,40 +33,97 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         padding: "0 1rem",
         textAlign: "right",
+    },
+    cancelButton: {
+        textDecoration: "none",
+        color: "#000"
     }
 }));
 
 
 export default function UserInfoHeader(props) {
+
+
     const classes = useStyles();
     const baseUrl = "www.pinterestaca.am";
+    let userId = 'ZLrbfZSFQR4dAMRm8NAx';
+    let docRef = db.collection("users").doc(`${userId}`);
 
-    const userInitials = {
-        firstName: "First name",
-        lastName: "Last name",
-        username: "Username",
-        userDescription: "User description",
-        location: "Location",
-        profile_picture: "url"
-    };
+    // Create a reference with an initial file path and name
+    let storage = firebase.storage();
+    let pathReference = storage.ref('/avatars');
 
+    // Create a reference from a Google Cloud Storage URI
+    // let gsReference = storage.refFromURL('gs://pinteresttest-18063.appspot.com/avatars/userAvatar.png')
 
-    function writeUserData(userId, firstName, lastName, username, userDescription, location, imageUrl) {
-        firebase.database().ref('users/' + userId).set({
-            firstName,
-            lastName,
-            username,
-            userDescription,
-            location,
-            profile_picture : imageUrl
+    // Create a reference from an HTTPS URL
+    // Note that in the URL, characters are URL escaped!
+   // var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg');
+
+/*    useEffect(()=> {
+        // Create a reference to the file we want to download
+        let userAvatarRef = pathReference.child('userAvatar.png');
+
+        // Get the download URL
+        userAvatarRef.getDownloadURL().then(function(url) {
+            console.log(url);
+            setAvatarUrl(url)
+        }).catch(function(error) {
+
+            // A full list of error codes is available at
+            // https://firebase.google.com/docs/storage/web/handle-errors
+            switch (error.code) {
+                case 'storage/object-not-found':
+                    // File doesn't exist
+                    console.log(error.message);
+                    break;
+
+                case 'storage/unauthorized':
+                    // User doesn't have permission to access the object
+                    console.log(error.message);
+                    break;
+
+                case 'storage/canceled':
+                    // User canceled the upload
+                    console.log(error.message);
+                    break;
+
+                case 'storage/unknown':
+                    // Unknown error occurred, inspect the server response
+                    console.log(error.message);
+                    break;
+            }
         });
+    }, []);*/
+
+
+    function updateUserData() {
+        let userDataInfo = db.collection("users").doc(userId);
+
+        return userDataInfo.update({
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            userDescription: userDescription,
+            location: location,
+        })
+        .then(function() {
+            console.log("Document successfully updated!");
+        })
+        .catch(function(error) {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+            console.error( error.message);
+        });
+
     }
 
-    const [firstName, setFirstName] = useState(userInitials.firstName);
-    const [lastName, setLastName] = useState(userInitials.lastName);
-    const [username, setUsername] = useState(userInitials.username);
-    const [userDescription, setUserDescription] = useState(userInitials.userDescription);
-    const [location, setLocation] = useState(userInitials.location);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [username, setUsername] = useState("");
+    const [userDescription, setUserDescription] = useState("");
+    const [location, setLocation] = useState("");
+    const [avatarUrl, setAvatarUrl] = useState("");
 
     const onFirstNameChange = useCallback((e)=> {
         setFirstName(e);
@@ -98,18 +157,25 @@ export default function UserInfoHeader(props) {
                         <Button
                             className={classes.userHeaderBtn}
                             variant="contained">
-                            Cancel
+                            <Link
+                                className={classes.cancelButton}
+                                to="/">
+                                Cancel
+                            </Link>
                         </Button>
                         <Button
-                            /*onClick={onSaveBtnClick} */
+                            onClick={updateUserData}
                             className={classes.userHeaderBtn}
                             variant="contained">
-                            Done
+                            Update
                         </Button>
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <UserAvatar btnChange="Change"/>
+                    <UserAvatar
+                        avatarUrl={avatarUrl}
+                        avatarId="user_avatar"
+                        btnChange="Change"/>
                 </Grid>
                 <Grid item xs={6}>
                     <UserInputForm

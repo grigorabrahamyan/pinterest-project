@@ -35,12 +35,6 @@ const useStyles = makeStyles(theme => ({
 function SimpleMenu(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-/*    function onAccountSettingsHandleClick() {
-        props.history.push('/user/account_settings/');
-    }
-    function onEditProfileHandleClick() {
-        props.history.push('/user/edit_profile/');
-    }*/
 
     const handleClick = event => {
         setAnchorEl(event.currentTarget);

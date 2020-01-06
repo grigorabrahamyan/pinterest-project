@@ -1,5 +1,5 @@
-import React, {useState} from "react"
-import Login from '../login/index';
+import React from "react"
+
 
 export default function Main(props) {
 
