@@ -43,15 +43,16 @@ const BootstrapInput = withStyles(theme => ({
 
 const useStyles = makeStyles(theme => ({
     margin: {
+        width: "100%",
         margin: theme.spacing(1),
     },
 }));
 
 export default function CustomSelect(props) {
     const classes = useStyles();
-    const [country, setCountry] = React.useState('');
     const handleChange = event => {
-        setCountry(event.target.value);
+        props.onCountryChange(event.target.value)
+
     };
 
     const countries = props.countries;
@@ -62,14 +63,13 @@ export default function CustomSelect(props) {
                 <InputLabel htmlFor={props.selectId}>{props.label}</InputLabel>
                 <NativeSelect
                     id={props.selectId}
-                    value={country}
                     onChange={handleChange}
                     input={<BootstrapInput />}
                 >
                     <option value="Select country" />
                     {countries.map((country, index) => {
                         if (countries.length && countries.length > 0){
-                            return  (<option value={index}>{country}</option>)
+                            return  (<option key={index} value={country}>{country}</option>)
                         }
                     })}
                 </NativeSelect>

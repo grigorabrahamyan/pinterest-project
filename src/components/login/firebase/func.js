@@ -1,7 +1,11 @@
 import firebase from './firebase';
 
 export const db = firebase.firestore();
+<<<<<<< HEAD
 export const storage = firebase.storage();
+=======
+const storage = firebase.storage();
+>>>>>>> 7487725cbe6f3c19cdfe4ebd816cb681c73db6de
 
 
 export function topics( nameOfCategory = '' ,id ) {
@@ -20,25 +24,47 @@ export function images( src = '' ,id ) {
     });
 };
 
-export function signUpNewUsersFinish( firstName = '', lastName = '', email = '', password = '', gender = '', age = '', topicId = [] ) {
-    firebase.auth().onAuthStateChanged((user) => {
-            const userData = db.collection('users').doc(`${user.uid}`);
-            userData.set({
-                firstName,
-                lastName,
-                email,
-                password,
-                gender,
-                age,
-                topicId,
+export function checkUserLogInOrNot() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if(user) {
+            db.collection("users").doc(`${user.uid}`).get().then((doc) => {
+                return doc.data();
             });
-        });
+        } else {
+            return `There aren't users!`;
+        }
+    })
 };
 
-export function signUpNewUsersFirstStep( email = '', password = '') {
+export function signout() {
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+      }).catch(function(error) {
+        // An error happened.
+    });
+};
+
+export function signUpNewUser(firstName = '', lastName = '', email = '', password = '', gender = '', age = '', topicId = []) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(() => console.log('Everything is ok!'))
-        .catch((error) => console.log(error.message));
+        .then((user) => {
+            if (user) {
+                const addUser = db.collection("users").doc(`${user.user.uid}`);
+                addUser.set({
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                    gender,
+                    age,
+                    topicId
+                });
+            } else {
+                console.log(`There isn't user...`);
+            }
+        })
+        .catch(function(error) {
+        console.log(`Error-message : ${error.message}`);
+    });
 };
 
 export function signInExistingUsers(email = '', password = '') {

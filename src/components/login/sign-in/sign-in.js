@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 function SignIn(props) {
 
-  const{changeSignUpSignIn} = props;
+  const{changeSignUpSignIn, changeLoginStateLogin} = props;
 
   const[email, setEmail] = useState('');
   const[errorEmail, setErrorEmail] = useState(false);
@@ -67,14 +67,15 @@ const changeSignUp = () => {
     if ( errorEmail || errorPassword || !email.length || !password.length ) {
         return null;
     }
-        signInExistingUsers(email, password).then(res => console.log(res)).catch((error) => {
-            console.log(error.message);
-            if ( error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' ) {
-              setError('Invalid email or password');
-            } else if (error.code === 'auth/too-many-requests') {
-              setError('Too many unsuccessful login attempts. Please try again later.')
-            }
-        });
+      changeLoginStateLogin();
+      signInExistingUsers(email, password).then(res => console.log(res)).catch((error) => {
+          console.log(error.message);
+          if ( error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' ) {
+            setError('Invalid email or password');
+          } else if (error.code === 'auth/too-many-requests') {
+            setError('Too many unsuccessful login attempts. Please try again later.')
+          }
+      });
     setEmail('');
     setPassword('');
 }, [email, password, errorEmail, errorPassword]);
