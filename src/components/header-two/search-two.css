@@ -65,6 +65,7 @@
     margin-top: 5px;
     border-radius: 10px;
     background-color: brown;
+    overflow-y: scroll;
     transition: 1000ms;
 }
 

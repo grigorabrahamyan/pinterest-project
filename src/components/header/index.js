@@ -12,6 +12,10 @@ import Index from "../user_creates/index"
 import AccountSettings from "../user/AccountSettings/AccountSettingsInformation";
 import EditProfile from "../user/EditProfile/editProfile";
 import MyCreate from "./MyCreate/myCreates";
+import UserSettingsLayout from "../../hoc/Layout/userSettingsLayout";
+import UserLayout from "../../hoc/Layout/userLayout";
+import Pins from "../user_creates/Pins";
+
 
 const useStyles = makeStyles({
     root: {
@@ -25,6 +29,14 @@ const useStyles = makeStyles({
         listStyle: "none",
     }
 });
+
+const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
+    <Route {...rest} render={props => (
+        <Layout>
+            <Component {...props} />
+        </Layout>
+    )} />
+);
 
 export default function Header(props) {
     const classes = useStyles();
@@ -73,16 +85,9 @@ export default function Header(props) {
                 <Route path="/user/user_creates">
                     <UserCreates />
                 </Route>
-                {/*<Route path="/user">*/}
-                {/*    <User />*/}
-                {/*</Route>*/}
-                <Route
-                    path='/user/account_settings'
-                    component={AccountSettings}/>
-                <Route
-                    exact
-                    path='/user/edit_profile'
-                    component={EditProfile}/>
+                <AppRoute exact path="/user/account_settings" layout={UserSettingsLayout} component={AccountSettings} />
+                <AppRoute exact path="/user/edit_profile" layout={UserSettingsLayout} component={EditProfile} />
+
                 <Route
                     exact
                     path="/">
