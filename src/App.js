@@ -46,20 +46,6 @@ function App() {
     setlogIn(logIn + 1);
   }
 
-<<<<<<< HEAD
-  // if(logIn > 3) {
-  //     return(
-  //       <Login />
-  //     );
-  // }
-
-    return (
-        <div onClick={changeLoginThreeTimes}>
-            <Header/>
-            <Main/>
-            <TransitionsTooltips/>
-        </div>
-=======
   function changeLoginState() {
     setlogIn(0);
   }
@@ -79,9 +65,9 @@ function App() {
         renderMainpanelApp = {renderMainPanelTrue}
         changeLoginStateApp = {changeLoginState}
       />
-      
+
       // <div className = 'modal' >
-      //   <Login 
+      //   <Login
       //     renderMainpanelApp = {renderMainPanelTrue}
       //     renderMainPannelFalseApp = {renderMainPanelFalse}
       //     changeLoginStateApp = {changeLoginState}
@@ -92,19 +78,18 @@ function App() {
 
   return (
     (<div onClick = {!isLogin && changeLoginThreeTimes} >
-        <Header 
+        <Header
           topics = {isTopics}
           chnageTopicsBoxApp = {changeTopicsBox}
           // step = {signUpStepTwo}
         />
         <div
-          onClick = {checkTopicsBox} 
+          onClick = {checkTopicsBox}
         >
           <Main />
           <TransitionsTooltips />
         </div>
     </div>)
->>>>>>> 7487725cbe6f3c19cdfe4ebd816cb681c73db6de
   );
 };
 
