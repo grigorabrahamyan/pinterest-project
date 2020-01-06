@@ -1,7 +1,5 @@
 import React from "react";
-import AccountSettings from "../AccountSettings/accountSettings";
-import EditProfile from "../EditProfile/editProfile";
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Link} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';

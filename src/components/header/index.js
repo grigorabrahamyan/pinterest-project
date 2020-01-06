@@ -8,13 +8,11 @@ import Home from "../home"
 import Logo from "./Logo/logo";
 import Grid from "@material-ui/core/Grid";
 import Search from "./Search/search";
-import Index from "../user_creates/index"
 import AccountSettings from "../user/AccountSettings/AccountSettingsInformation";
 import EditProfile from "../user/EditProfile/editProfile";
 import MyCreate from "./MyCreate/myCreates";
 import UserSettingsLayout from "../../hoc/Layout/userSettingsLayout";
-import UserLayout from "../../hoc/Layout/userLayout";
-import Pins from "../user_creates/Pins";
+
 
 
 const useStyles = makeStyles({

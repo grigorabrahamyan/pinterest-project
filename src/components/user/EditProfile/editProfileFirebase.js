@@ -1,9 +1,11 @@
 import firebase from "../../login/firebase/firebase";
 
-/*const db = firebase.firestore();
-const storage = firebase.storage();
+export const db = firebase.firestore();
+export const storage = firebase.storage();
 
-export function changeUserInitials( userId = '', userNewData = []) {
+
+/*
+export function changeuserData( userId = '', userNewData = []) {
     const userData = db.collection('users').doc(`${userId}`);
 }
 
