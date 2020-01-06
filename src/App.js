@@ -15,7 +15,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import firebase from './components/login/firebase/firebase';
 import {signout} from './components/login/firebase/func';
 import TransitionsModal from './components/login/modal/sign-in-modal';
-import Popup from "reactjs-popup";
 import {db} from './components/login/firebase/func'
 
 function App() {

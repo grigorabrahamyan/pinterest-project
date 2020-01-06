@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -15,6 +16,14 @@ import {signInExistingUsers} from '../login/firebase/func';
 import ComboBox from './search';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import SearchBox from './search-two';
+import UserCreates from "../user_creates";
+import UserSettingsLayout from "../../hoc/Layout/userSettingsLayout";
+import AccountSettings from "../user/AccountSettings/AccountSettingsInformation";
+import EditProfile from "../user/EditProfile/editProfile";
+import Home from "../home";
+import Logo from "../header/Logo/logo";
+import MyCreate from "../header/MyCreate/myCreates";
+
 // import {checkUserLogInOrNot} from '../login/firebase/func';
 
 const useStyles = makeStyles(theme => ({
@@ -26,12 +35,20 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function LogHeader({step, topics, chnageTopicsBoxHeader}) {
+const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
+    <Route {...rest} render={props => (
+        <Layout>
+            <Component {...props} />
+        </Layout>
+    )} />
+);
+
+function LogHeader({step, topics, changeTopicsBoxHeader}) {
 
     const[login, setLogin] = useState([
         `home`,
         `login`,
-        `registr`
+        `register`
     ]);
 
     useEffect(() => {
@@ -40,7 +57,7 @@ function LogHeader({step, topics, chnageTopicsBoxHeader}) {
                 setLogin([
                     `home`,
                     `my creates`,
-                    [`${doc.data().firstName}`, [`acaunt setings`, `edit profiler`, `logout`]]
+                    [`${doc.data().firstName}`, [`account settings`, `edit profiler`, `logout`]]
                 ]);
             })
         }
@@ -49,9 +66,12 @@ function LogHeader({step, topics, chnageTopicsBoxHeader}) {
     const classes = useStyles();
 
     return (
+    <Router>
         <header className = 'header' >
             <div className = 'img-logo-header' >
-                <img className = 'img-logo-header' src = 'http://www.freshimpetus.co.uk/wp-content/uploads/2017/10/pinterest-logo.png' alt = 'Logo' />
+                <Link to="/">
+                    <img className = 'img-logo-header' src = 'http://www.freshimpetus.co.uk/wp-content/uploads/2017/10/pinterest-logo.png' alt = 'Logo' />
+                </Link>
             </div>
             <div className = 'search-input' >
                 {/* <Autocomplete
@@ -74,7 +94,7 @@ function LogHeader({step, topics, chnageTopicsBoxHeader}) {
             {/* <ComboBox /> */}
             <SearchBox 
                 topics = {topics}
-                chnageTopicsBoxLogHeader = {chnageTopicsBoxHeader} 
+                chnageTopicsBoxLogHeader = {changeTopicsBoxHeader}
             />
             </div>
             <nav className = 'navbar-header' >
@@ -88,6 +108,7 @@ function LogHeader({step, topics, chnageTopicsBoxHeader}) {
                                             className = 'nav-items-item'
                                             size="large"
                                             className={classes.margin}
+
                                         >
                                             {`${item[0]}`}
                                             {/* <InputLabel id="demo-simple-select-outlined-label">
@@ -99,22 +120,52 @@ function LogHeader({step, topics, chnageTopicsBoxHeader}) {
                                                 value={`age`}
                                                 // labelWidth={labelWidth}
                                             >
-                                                <MenuItem value={10}>{item[1][0]}</MenuItem>
-                                                <MenuItem value={20}>{item[1][1]}</MenuItem>
-                                                <MenuItem value={30}>{item[1][2]}</MenuItem>
+                                                <MenuItem value={10}>
+                                                    <Link
+                                                        to="/user/account_settings/">
+                                                        {item[1][0]}
+                                                    </Link>
+                                                </MenuItem>
+                                                <MenuItem value={20}>
+                                                    <Link
+                                                        to="/user/edit_profile/">
+                                                        {item[1][1]}
+                                                    </Link>
+                                                </MenuItem>
+                                                <MenuItem value={30}>
+                                                    {item[1][2]}
+                                                </MenuItem>
                                             </Select>
                                         </Button>
                                     );
                                 }
-                                return( <Button
-                                    className = 'nav-items-item'
-                                    size="large"
-                                    className={classes.margin}
-                                >
-                                    {`${item}`}
-                                </Button>
-                                )
-                            })
+                                {
+                                    if (item === "home") {
+                                        return( <Button
+                                                className = 'nav-items-item'
+                                                size="large"
+                                                className={classes.margin}
+                                            >
+                                                <Link to="/">
+                                                    {`${item}`}
+                                                </Link>
+                                            </Button>
+                                        )
+                                    }
+                                    if (item === "my creates") {
+                                        return( <Button
+                                                className = 'nav-items-item'
+                                                size="large"
+                                                className={classes.margin}
+                                            >
+                                                <Link to="/user/user_creates">
+                                                    {`${item}`}
+                                                </Link>
+                                            </Button>
+                                        )
+                                    }
+                                }
+                             })
                         }
                         {/* <Button 
                             size="large"
@@ -142,6 +193,20 @@ function LogHeader({step, topics, chnageTopicsBoxHeader}) {
                 </div>
             </nav>
         </header>
+        <Switch>
+            <Route path="/user/user_creates">
+                <UserCreates />
+            </Route>
+            <AppRoute exact path="/user/account_settings" layout={UserSettingsLayout} component={AccountSettings} />
+            <AppRoute exact path="/user/edit_profile" layout={UserSettingsLayout} component={EditProfile} />
+
+            <Route
+                exact
+                path="/">
+                <Home />
+            </Route>
+        </Switch>
+    </Router>
     );
 };
 
