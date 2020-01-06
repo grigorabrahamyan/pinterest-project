@@ -46,6 +46,20 @@ function App() {
     setlogIn(logIn + 1);
   }
 
+<<<<<<< HEAD
+  // if(logIn > 3) {
+  //     return(
+  //       <Login />
+  //     );
+  // }
+
+    return (
+        <div onClick={changeLoginThreeTimes}>
+            <Header/>
+            <Main/>
+            <TransitionsTooltips/>
+        </div>
+=======
   function changeLoginState() {
     setlogIn(0);
   }
@@ -90,6 +104,7 @@ function App() {
           <TransitionsTooltips />
         </div>
     </div>)
+>>>>>>> 7487725cbe6f3c19cdfe4ebd816cb681c73db6de
   );
 };
 
