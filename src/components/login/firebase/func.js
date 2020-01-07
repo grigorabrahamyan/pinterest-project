@@ -1,7 +1,8 @@
 import firebase from './firebase';
 
 export const db = firebase.firestore();
-const storage = firebase.storage();
+export const storage = firebase.storage();
+
 
 
 export function topics( nameOfCategory = '' ,id ) {
@@ -112,4 +113,3 @@ export function topicsUsersMap( topicId = '', userId = '', id = '' ) {
         userId: `${userId}`,
     });
 };
-
