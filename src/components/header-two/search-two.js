@@ -7,12 +7,12 @@ async function readTopicsData() {
     return data;
 }
 
-function SearchBox({topics, chnageTopicsBoxLogHeader}) {
+function SearchBox({topics, changeTopicsBoxLogHeader}) {
 
     const[category, setCategory] = useState([]);
 
     function addCkeckBoxTopics() {
-        chnageTopicsBoxLogHeader();
+        changeTopicsBoxLogHeader();
     }
 
     // function removeCheckBoxTopics() {
