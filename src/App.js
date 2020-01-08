@@ -13,6 +13,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogContent from '@material-ui/core/DialogContent';
 import GetArr from './components/First page/Firstpage'
+//import GetArr from './components/First page/Firstpagecopy'
 
 export default function App() {
 

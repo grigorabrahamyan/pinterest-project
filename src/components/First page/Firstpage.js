@@ -29,6 +29,8 @@ async function getRandomImages() {
 	return randomImagesData;
 }
 
+
+
 // async function getTopicName() {
 // 	const topicName = await db.collection('topics').get();
 // 	return topicName;
