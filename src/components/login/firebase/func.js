@@ -2,6 +2,10 @@ import firebase from './firebase';
 
 export const db = firebase.firestore();
 export const storage = firebase.storage();
+// <<<<<<< HEAD
+// =======
+
+// >>>>>>> 8b30580e759e2daff5df5e3f8a5bf66e9a7fe100
 
 
 export function topics( nameOfCategory = '' ,id ) {

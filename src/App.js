@@ -15,7 +15,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import firebase from './components/login/firebase/firebase';
 import {signout} from './components/login/firebase/func';
 import TransitionsModal from './components/login/modal/sign-in-modal';
-import Popup from "reactjs-popup";
 import {db} from './components/login/firebase/func'
 
 function App() {
@@ -66,9 +65,9 @@ function App() {
         renderMainpanelApp = {renderMainPanelTrue}
         changeLoginStateApp = {changeLoginState}
       />
-      
+
       // <div className = 'modal' >
-      //   <Login 
+      //   <Login
       //     renderMainpanelApp = {renderMainPanelTrue}
       //     renderMainPannelFalseApp = {renderMainPanelFalse}
       //     changeLoginStateApp = {changeLoginState}
@@ -79,13 +78,13 @@ function App() {
 
   return (
     (<div onClick = {!isLogin && changeLoginThreeTimes} >
-        <Header 
+        <Header
           topics = {isTopics}
           chnageTopicsBoxApp = {changeTopicsBox}
           // step = {signUpStepTwo}
         />
         <div
-          onClick = {checkTopicsBox} 
+          onClick = {checkTopicsBox}
         >
           <Main />
           <TransitionsTooltips />
