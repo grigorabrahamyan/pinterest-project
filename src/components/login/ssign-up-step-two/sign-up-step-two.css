@@ -110,3 +110,7 @@
     padding: 16px 32px;
     border-radius: 5px;
   }
+
+  .loading {
+      margin: 100px auto;
+  }

@@ -11,7 +11,6 @@ import Container from '@material-ui/core/Container';
 import FormControlLabelPosition from './form-control-label-position';
 import checkPassword from '../validation/password-validation';
 import validateEmail from '../validation/email-validation';
-// import { signUpNewUsers } from '../firebase/func';
 import {signUpNewUsersFirstStep} from '../firebase/func';
 import SignUpStepTwo from '../ssign-up-step-two/sign-up-step-two';
 
@@ -35,7 +34,7 @@ export const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
 
   const [firstName, setFirstname] = useState('');
   const [lastName, setLastName] = useState('');
@@ -48,6 +47,8 @@ export default function SignUp() {
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
   const[isUserLoginFirstStep, setIsUserLoginFirstStep] = useState(false);
+
+  const {changeSignUp, inishalLoginSignUp, changeLoginStateLogin} = props;
 
   const classes = useStyles();
 
@@ -96,7 +97,6 @@ export default function SignUp() {
     event.preventDefault();
     if (firstName.length && lastName.length && age.length && !errorEmail && !errorPassword && !errorConfirmPassword) {
       // signUpNewUsers(firstName, lastName, email, password, gender, age);
-      signUpNewUsersFirstStep(email, password);
       setIsUserLoginFirstStep(true);
     }
     return null;
@@ -111,25 +111,14 @@ export default function SignUp() {
         age = {age}
         email = {email}
         password = {password}
+        inishalLoginSignUpStepTwo = {inishalLoginSignUp}
+        changeLoginStateSignUp = {changeLoginStateLogin}
       />
     );
   };
 
   return (
     <>
-      <Button
-        type="submit"
-        // fullWidth
-        variant="contained"
-        color="primary"
-        style={{
-          position: 'absolute',
-          marginLeft: '50px',
-          marginTop: '50px'
-        }}
-      >
-        Sign In
-      </Button>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -244,7 +233,11 @@ export default function SignUp() {
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <LinkMaterial  href="#" variant="body2" >
+                <LinkMaterial  
+                  href="#" 
+                  variant="body2" 
+                  onClick = {changeSignUp}
+                >
                   Already have an account? Sign in
                 </LinkMaterial>
               </Grid>

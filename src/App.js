@@ -1,64 +1,112 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-<<<<<<< HEAD
-import Header from "./components/header";
-import Main from "./components/main";
-import Footer from "./components/footer";
-import Firstpage from './components/First page/Firstpage'
-=======
 import UserLayout from "./hoc/Layout/userLayout";
 import DefaultLayout from "./hoc/Layout/defaultLayout";
 import User from "./components/user";
-import Header from './components/header/index';
+import Header from './components/header-two/index';
 import Main from './components/main/index';
 import TransitionsTooltips from './components/footer/index';
 import Login from './components/login/index';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogContent from '@material-ui/core/DialogContent';
+import firebase from './components/login/firebase/firebase';
+import {signout} from './components/login/firebase/func';
+import TransitionsModal from './components/login/modal/sign-in-modal';
+import Popup from "reactjs-popup";
+import {db} from './components/login/firebase/func'
 
-export default function App() {
+function App() {
 
-  const[logIn, setlogIn] = useState(false);
+  // signout();
 
-  function foo() {
-    console.log('privet Armenia')
-    setlogIn(true);
+  const[isLogin, setIsLogin] = useState(false);
+  const[logIn, setlogIn] = useState(0);
+  const[signUpStepTwo, setSignUpStepTwo] = useState(false);
+  const[isTopics, setIsTopics] = useState(false);
+
+  function checkTopicsBox() {
+    setIsTopics(false);
   }
 
-  if(logIn) {
-      return(
-          <Login />
-      );
+  function changeTopicsBox() {
+    setIsTopics(true);
   }
->>>>>>> cba07095bc29d7d0af096f187bc859f80f7805d0
+
+  function renderMainPanelTrue() {
+    setSignUpStepTwo(true);
+  }
+
+  function renderMainPanelFalse() {
+    setSignUpStepTwo(false);
+  }
+
+  function changeLoginThreeTimes() {
+    setlogIn(logIn + 1);
+  }
+
+ 
+  // if(logIn > 3) {
+  //     return(
+  //       <Login />
+  //     );
+  // }
+
+    return (
+        <div onClick={changeLoginThreeTimes}>
+            <Header/>
+            <Main/>
+            <TransitionsTooltips/>
+        </div>
+    )
+  function changeLoginState() {
+    setlogIn(0);
+  }
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(function(user) {
+          if(user) {
+            setIsLogin(true);
+          }
+      })
+  }, [isLogin]);
+
+  if(logIn === 4) {
+    return(
+
+      <TransitionsModal
+        renderMainpanelApp = {renderMainPanelTrue}
+        changeLoginStateApp = {changeLoginState}
+      />
+      
+      // <div className = 'modal' >
+      //   <Login 
+      //     renderMainpanelApp = {renderMainPanelTrue}
+      //     renderMainPannelFalseApp = {renderMainPanelFalse}
+      //     changeLoginStateApp = {changeLoginState}
+      //   />
+      // </div>
+    );
+  };
 
   return (
-      <div onClick = {foo} >
-        <Header/>
-<<<<<<< HEAD
-        <Firstpage/>
-        <Main/>
-        <Footer/>
-      </Fragment>
-=======
-        <Main />
-        <TransitionsTooltips/>
-      </div>
->>>>>>> cba07095bc29d7d0af096f187bc859f80f7805d0
+    (<div onClick = {!isLogin && changeLoginThreeTimes} >
+        <Header 
+          topics = {isTopics}
+          chnageTopicsBoxApp = {changeTopicsBox}
+          // step = {signUpStepTwo}
+        />
+        <div
+          onClick = {checkTopicsBox} 
+        >
+          <Main />
+          <TransitionsTooltips />
+        </div>
+    </div>)
+
   );
-    // return (
-    //     <>
-    //         {
-    //             (User.isAuthorised) ?
-    //                 (
-    //                     <UserLayout>
-
-    //                     </UserLayout>
-    //                 )
-    //                 : (
-    //                     <DefaultLayout>
-
-    //                     </DefaultLayout>
-    //                 )
-    //         }
-    //     </>
-    // )
 };
+
+export default App;
