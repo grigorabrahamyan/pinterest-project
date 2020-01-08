@@ -12,10 +12,15 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogContent from '@material-ui/core/DialogContent';
+<<<<<<< HEAD
 import firebase from './components/login/firebase/firebase';
 import {signout} from './components/login/firebase/func';
 import TransitionsModal from './components/login/modal/sign-in-modal';
 import {db} from './components/login/firebase/func'
+=======
+import GetArr from './components/First page/Firstpage'
+//import GetArr from './components/First page/Firstpagecopy'
+>>>>>>> validation
 
 function App() {
 
@@ -91,6 +96,7 @@ function App() {
   };
 
   return (
+<<<<<<< HEAD
     (<div onClick = {!isLogin && changeLoginThreeTimes} >
         <Header
           topics = {isTopics}
@@ -105,6 +111,17 @@ function App() {
         </div>
     </div>)
 
+=======
+      <div onClick = {changeLoginThreeTimes} >
+        <Header/>
+        <GetArr/>
+        <div>
+          <h1>HELLO! It is Footer</h1>
+        </div>
+
+        
+      </div>
+>>>>>>> validation
   );
 };
 
