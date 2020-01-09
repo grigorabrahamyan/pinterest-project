@@ -16,6 +16,8 @@ import firebase from './components/login/firebase/firebase';
 import {signout} from './components/login/firebase/func';
 import TransitionsModal from './components/login/modal/sign-in-modal';
 import {db} from './components/login/firebase/func'
+import GetArr from './components/First page/Firstpage'
+//import GetArr from './components/First page/Firstpagecopy'
 
 function App() {
 
@@ -46,6 +48,20 @@ function App() {
     setlogIn(logIn + 1);
   }
 
+ 
+  // if(logIn > 3) {
+  //     return(
+  //       <Login />
+  //     );
+  // }
+
+    return (
+        <div onClick={changeLoginThreeTimes}>
+            <Header/>
+            <Main/>
+            <TransitionsTooltips/>
+        </div>
+    )
   function changeLoginState() {
     setlogIn(0);
   }
@@ -87,9 +103,21 @@ function App() {
           onClick = {checkTopicsBox}
         >
           <Main />
+          <GetArr/>
+
           <TransitionsTooltips />
         </div>
+        <div onClick = {changeLoginThreeTimes} >
+        <Header/>
+        <div>
+          <h1>HELLO! It is Footer</h1>
+        </div>
+
+        
+      </div>
     </div>)
+
+   
   );
 };
 

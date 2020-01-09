@@ -6,26 +6,73 @@ import firebase from '../login/firebase/firebase';
 import { topic } from './fir';
 import {db, storage} from "../login/firebase/func"
 
+
+async function getTopics() {
+    const data = await db.collection('topics').get();
+    return data;
+};
+
+async function getUserTopicsId() {
+    const user = await firebase.auth().currentUser;
+    return user;
+}
+
+
 const Topics = () => {
-    const [follow1, setFollow1] = useState(true);
-    const [follow2, setFollow2] = useState(true);
-    const [follow3, setFollow3] = useState(true);
-    const [follow4, setFollow4] = useState(true);
+            const [follow1, setFollow1] = useState(true);
+            const [follow2, setFollow2] = useState(true);
+            const [follow3, setFollow3] = useState(true);
+            const [follow4, setFollow4] = useState(true);
+            const[topics, setTopics] = useState([]);
 
 
+
+// useEffect(()=> {
+//     const arr = [];
+//     db.collection("topics").get().then(function(querySnapshot) {
+//         querySnapshot.forEach(function(doc) {
+//             // console.log(doc.id, " => ", doc.data().avatarUrl);
+//             // arr.forEach(element => arr.push(element));
+//             // arr.push(doc.data().avatarUrl);
+//             // arr.push(doc.data().nameOfCategory);
+            
+//                 arr.push(doc.data().avatarUrl)
+//              let array = arr.splice(0,36)
+//             // if(doc.data().avatarUrl.lenght === 36){
+//             //     arr.push(doc.data().avatarUrl)
+//             // }
+//                 console.log(array.length)
+//         });
+//         // setTopics(arr)
+//     });
+// })
 
 useEffect(()=> {
-    db.collection("topics").get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            console.log(doc.id, " => ", doc.data().avatarUrl);
+    const arr = [];
+    getTopics().then(res => {
+        res.forEach(item => {
+            arr.push({
+                avatarUrl: item.data().avatarUrl,
+                nameOfCategory: item.data().nameOfCategory,
+                id: item.id, })
         });
+        console.log(arr)
+        setTopics(arr);
     });
+},[]);
+
+getUserTopicsId().then(user => {
+    if (user) {
+        const getUser = db.collection("users").doc(`${user.uid}`);
+        getUser.get().then(doc => console.log(doc.data().topicId));
+    }
 })
 
     return (
       
         <div className="topics">
-            <div className="divtopics">
+
+             {/* <div className="divtopics">
                 <button className="buttontop">
                     <img className="topics_img" src="https://wallpaperaccess.com/full/87755.jpg"/>
                     <span className="picsCategory"> Nature</span>
@@ -33,10 +80,27 @@ useEffect(()=> {
                 {  follow1 ?    <button className="category" onClick={() => setFollow1(false)}>Follow</button>:
                     <button className="category" onClick={() => setFollow1(true)}>Following</button>
                 }
+            </div>  */}
+
+
+
+
+              
+
+            <div className = 'items' >
+                { topics.map( (item) => {
+                    return(
+                    <div>
+                        <img  className="topics_img" src={item.avatarUrl}/> 
+                       <span>{item.nameOfCategory}</span>
+                        {/* id = {item.id} */}
+                    </div> );
+                })}
             </div>
 
 
-            <div className="divtopics">
+
+            {/* <div className="divtopics">
                 <button className="buttontop">
                     <img className="topics_img"
                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT4ujBj5z-nzJmS262khrcf93rrBq8Y8jP8dNhPg03ztFKtBkJ2"/>
@@ -45,9 +109,13 @@ useEffect(()=> {
                 {  follow2 ?    <button className="category" onClick={() => setFollow2(false)}>Follow</button>:
                     <button className="category" onClick={() => setFollow2(true)}>Following</button>
                 }
-            </div>
+            </div> */}
 
-            <div className="divtopics">
+
+
+
+
+            {/* <div className="divtopics">
                 <button className="buttontop">
                     <img className="topics_img"
                          src="https://www.hollywoodhalfwits.com/wp-content/uploads/2019/08/41.jpg"/>
@@ -67,9 +135,9 @@ useEffect(()=> {
                 {  follow4 ?    <button className="category" onClick={() => setFollow4(false)}>Follow</button>:
                     <button className="category" onClick={() => setFollow4(true)}>Following</button>
                 }
-            </div>
+            </div> */}
 
-
+            
         </div>
     )
 }

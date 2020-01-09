@@ -24,19 +24,49 @@ const useStyles = makeStyles({
 
 const db = firebase.firestore();
 
-async function getRandomImages() {
-	const randomImagesData = await db.collection('images').get();
-	return randomImagesData;
+async function getImages() {
+	const userImages = await db.collection('images').doc('ZcJpWVTfU1VH14yMWFv2aNKZqgv1').get();
+	return userImages;
 }
 
+getImages().then(data => {
+             console.log(data.data())
+           })
 
 
-// async function getTopicName() {
-// 	const topicName = await db.collection('topics').get();
-// 	return topicName;
+
+           ///
+
+           async function getImages1() {
+            const userImages = await db.collection('images').get();
+            return userImages;
+        }
+        
+        getImages1().then(data => {
+                     console.log(data.data())
+                   })
+
+
+
+
+////////////////////////////////////////////------Prosto testa, verjum jnjel
+
+
+// async function getImages() {
+// 	const oneImage = await db.collection('images').doc("1215vtUrf8W4MRheOL4J").get();
+// 	return oneImage;
 // }
 
-export default function GetArr() {
+// getOneImages().then(data => {
+//         console.log(data.data()
+
+//         })
+
+///////////////////////////////////////////-----------------------
+
+
+
+export default function GetUserImages() {
 	
   const [data, setData] = useState([]);
   const[randomData, setRandomData] = useState([])
@@ -44,7 +74,7 @@ export default function GetArr() {
   useEffect(() => {
 	const arr = [];
 	const randArr = [];
-	getRandomImages().then(doc => {
+	getImages().then(doc => {
 		doc.forEach(img => {
 			arr.push(
 				{
@@ -57,11 +87,11 @@ export default function GetArr() {
 		
 	
 
-		while(randArr.length < 24){
-			let r = Math.floor(Math.random() * 25) + 1;
-			if(randArr.indexOf(arr[r]) === -1) randArr.push(arr[r]);
-		}
-		setData(randArr);
+		// while(randArr.length < 24){
+		// 	let r = Math.floor(Math.random() * 25) + 1;
+		// 	if(randArr.indexOf(arr[r]) === -1) randArr.push(arr[r]);
+		// }
+		setData(arr);
 	});
 	
   }, []);
