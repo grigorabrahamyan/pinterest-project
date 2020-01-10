@@ -48,7 +48,7 @@ export default function SignUp(props) {
   const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
   const[isUserLoginFirstStep, setIsUserLoginFirstStep] = useState(false);
 
-  const {changeSignUp, inishalLoginSignUp, changeLoginStateLogin} = props;
+  const {changeSignUpSignUp, inishalLoginSignUp, changeLoginStateLogin} = props;
 
   const classes = useStyles();
 
@@ -236,7 +236,7 @@ export default function SignUp(props) {
                 <LinkMaterial  
                   href="#" 
                   variant="body2" 
-                  onClick = {changeSignUp}
+                  onClick = {changeSignUpSignUp}
                 >
                   Already have an account? Sign in
                 </LinkMaterial>

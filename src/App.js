@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import UserLayout from "./hoc/Layout/userLayout";
 import DefaultLayout from "./hoc/Layout/defaultLayout";
@@ -19,12 +19,11 @@ import {db} from './components/login/firebase/func'
 
 function App() {
 
-  // signout();
-
   const[isLogin, setIsLogin] = useState(false);
   const[logIn, setlogIn] = useState(0);
   const[signUpStepTwo, setSignUpStepTwo] = useState(false);
   const[isTopics, setIsTopics] = useState(false);
+  const[signUp, setSignUp] = useState(false);
 
   function checkTopicsBox() {
     setIsTopics(false);
@@ -50,6 +49,15 @@ function App() {
     setlogIn(0);
   }
 
+  const changeLoginFour = useCallback(() => {
+    setlogIn(4);
+    console.log('Privet');
+  }, []);
+
+  const changeSignUp = () => {
+    setSignUp(!signUp);
+  }
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function(user) {
           if(user) {
@@ -58,27 +66,22 @@ function App() {
       })
   }, [isLogin]);
 
-  if(logIn === 4) {
-    return(
-
-      <TransitionsModal
-        renderMainpanelApp = {renderMainPanelTrue}
-        changeLoginStateApp = {changeLoginState}
-      />
-
-      // <div className = 'modal' >
-      //   <Login
-      //     renderMainpanelApp = {renderMainPanelTrue}
-      //     renderMainPannelFalseApp = {renderMainPanelFalse}
-      //     changeLoginStateApp = {changeLoginState}
-      //   />
-      // </div>
-    );
-  };
+  // if(logIn === 4) {
+  //   return(
+  //     <TransitionsModal
+  //       signUp = {signUp}
+  //       changeSignUpApp = {changeSignUp}
+  //       renderMainpanelApp = {renderMainPanelTrue}
+  //       changeLoginStateApp = {changeLoginState}
+  //     />
+  //   );
+  // };
 
   return (
     (<div onClick = {!isLogin && changeLoginThreeTimes} >
         <Header
+          // changeSignUpApp = {changeSignUpTransitionsModal}
+          changeLoadingApp = {changeLoginFour}
           topics = {isTopics}
           chnageTopicsBoxApp = {changeTopicsBox}
           // step = {signUpStepTwo}

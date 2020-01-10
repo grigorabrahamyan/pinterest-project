@@ -7,9 +7,7 @@ import SignUp from './sign-up/sign-up';
 
 function Login(props) {
 
-    const{renderMainpanelTransitionModal, changeLoginStateTransitionModal} = props;
-
-    const[signUp, setSignUp] = useState(false);
+    const{renderMainpanelTransitionModal, changeLoginStateTransitionModal, chnageSignUpTransitionsModal, signUp} = props;
 
     const renderMainpanelLogin = () => {
         renderMainpanelTransitionModal();
@@ -19,18 +17,14 @@ function Login(props) {
         renderMainpanelLogin();
     },[])
 
-    const changeSignUpSignIn = () => {
-        setSignUp(!signUp);
-    }
-
-    const changeSignUpState = () => {
-        setSignUp(!signUp);
+    function changeSignUpLogin() {
+        chnageSignUpTransitionsModal();
     }
 
     if (signUp) {
         return (
-            <SignUp 
-                changeSignUp = {changeSignUpState}
+            <SignUp
+                changeSignUpSignUp = {changeSignUpLogin}
                 changeLoginStateLogin = {changeLoginStateTransitionModal}
             />
         );
@@ -38,8 +32,8 @@ function Login(props) {
 
     return (
         <>
-            <SignIn 
-                changeSignUpSignIn = {changeSignUpSignIn}
+            <SignIn
+                changeSignUpSignIn = {changeSignUpLogin}
                 changeLoginStateLogin = {changeLoginStateTransitionModal}
             />
         </>

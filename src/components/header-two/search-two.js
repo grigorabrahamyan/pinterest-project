@@ -7,17 +7,13 @@ async function readTopicsData() {
     return data;
 }
 
-function SearchBox({topics, changeTopicsBoxLogHeader}) {
+function SearchBox({topics, chnageTopicsBoxLogHeader}) {
 
     const[category, setCategory] = useState([]);
 
     function addCkeckBoxTopics() {
-        changeTopicsBoxLogHeader();
+        chnageTopicsBoxLogHeader();
     }
-
-    // function removeCheckBoxTopics() {
-    //     setTopics([]);
-    // }
 
     useEffect(() => {
         const arr = [];
@@ -28,14 +24,10 @@ function SearchBox({topics, changeTopicsBoxLogHeader}) {
                     id: doc.id
                 })
             })
-        })
-        setCategory(arr);
+        }).then(() => setCategory(arr))
     }, []);
 
-    console.log(category);
-
     return (
-
         <>
             <div
                 className = 'search input-one'
@@ -57,12 +49,12 @@ function SearchBox({topics, changeTopicsBoxLogHeader}) {
                 />
                 {
                     topics ?
-                    <div className = 'check-topics' > 
+                    <div className = 'check-topics' >
                         {
                             category.map(item => {
                                 return (<label className = 'chackbox-item' >
                                     <input type = 'checkbox' />
-                                    {`${item.name}`}
+                                    {`${item.name}`.toUpperCase()}
                                 </label>)
                             })
                         }

@@ -2,12 +2,13 @@ import React from 'react';
 import LogHeader from './log-header';
 import './index.css';
 
-function Header({step, topics, chnageTopicsBoxApp}) {
+function Header({topics, chnageTopicsBoxApp, changeLoadingApp, changeSignUpApp}) {
     return (
         <LogHeader 
-            chnageTopicsBoxHeader = {chnageTopicsBoxApp} 
+            changeSignUpHeader = {changeSignUpApp}
+            changeLoadingHeader = {changeLoadingApp}
+            changeTopicsBoxHeader = {chnageTopicsBoxApp}
             topics = {topics}
-            // step = {step}
         />
     );
 };
