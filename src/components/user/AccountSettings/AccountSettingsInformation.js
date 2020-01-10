@@ -9,6 +9,7 @@ import UserGenderSelect from "./userGenderSelect";
 import Button from "@material-ui/core/Button";
 import CustomSelect from "../userInformation/customSelect";
 import {db} from "../EditProfile/editProfileFirebase";
+import firebase from "../../login/firebase/firebase";
 import {Link} from "react-router-dom";
 import UserDatePicker from "./userDatePicker";
 
@@ -55,50 +56,49 @@ export default function AccountSettings(props) {
     const [currentDate, setCurrentDate] = useState(new Date());
     let [userAge, setUserAge] = useState("");
 
-    let userId = 'ZLrbfZSFQR4dAMRm8NAx';
+    let userId = `${firebase.auth().currentUser.uid}`;
 
     const onEmailChange = useCallback((e)=> {
         setEmail(e);
-        console.log(e)
     }, []);
 
     const selectGender = useCallback((e) =>{
         setGender(e)
-        console.log(e)
     },[]);
 
     const selectCountry = useCallback((e) =>{
         setCountry(e)
-        console.log(e)
     },[]);
 
     const selectUserBirthDate = useCallback((e) =>{
-        setUserBirthDate(e)
-        setCurrentDate(new Date())
-        userAge = currentDate.getFullYear() - e.getFullYear()
+        setUserBirthDate(e);
+        setCurrentDate(new Date());
+        userAge = currentDate.getFullYear() - e.getFullYear();
         setUserAge(userAge);
-
-
     },[]);
 
     function updateUserData() {
-        let userDataInfo = db.collection("users").doc(userId);
+        if (firebase.auth().currentUser) {
+            let userDataInfo = db.collection("users").doc(userId);
 
-        return userDataInfo.update({
-            email: email,
-            gender: gender,
-            country: country,
-            age: userAge,
-
-        })
-            .then(function() {
+            return userDataInfo.update({
+                email: email,
+                gender: gender,
+                country: country,
+                age: userAge,
+            })
+            .then(function () {
+                setEmail("");
+                setGender("");
+                setCountry("");
+                setEmail("");
                 console.log("Document successfully updated!");
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 // The document probably doesn't exist.
                 console.error("Error updating document: ", error);
             });
-
+        }
     }
 
     return (
@@ -127,7 +127,7 @@ export default function AccountSettings(props) {
                             onClick={updateUserData}
                             className={classes.userHeaderBtn}
                             variant="contained">
-                            Done
+                            Update
                         </Button>
                     </div>
                 </Grid>
