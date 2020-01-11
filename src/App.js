@@ -71,32 +71,21 @@ function App() {
 
   if(logIn === 4) {
     return(
-
       <TransitionsModal
         signUp = {signUp}
         changeSignUpApp = {changeSignUp}
         renderMainpanelApp = {renderMainPanelTrue}
         changeLoginStateApp = {changeLoginState}
       />
-
-      // <div className = 'modal' >
-      //   <Login
-      //     renderMainpanelApp = {renderMainPanelTrue}
-      //     renderMainPannelFalseApp = {renderMainPanelFalse}
-      //     changeLoginStateApp = {changeLoginState}
-      //   />
-      // </div>
     );
   };
 
   return (
     (<div onClick = {!isLogin && changeLoginThreeTimes} >
         <Header
-          // changeSignUpApp = {changeSignUpTransitionsModal}
           changeLoadingApp = {changeLoginFour}
           topics = {isTopics}
           chnageTopicsBoxApp = {changeTopicsBox}
-          // step = {signUpStepTwo}
         />
         <div
           onClick = {checkTopicsBox}

@@ -76,8 +76,7 @@ function LogHeader({step, topics, changeTopicsBoxHeader, changeLoadingHeader, ch
 
     const userSignOut = useCallback(() => {
         signout();
-        console.log('User sign out');
-    }, [signout]);
+    }, []);
 
     return (
     <Router>
