@@ -65,9 +65,9 @@
     margin-top: 5px;
     border-radius: 10px;
     background-color: white;
+    box-shadow: 0 1px 7px;
     overflow-y: scroll;
-    box-shadow: 0 1px 7px #ccc;
-    transition: 3000ms;
+    transition: 1000ms;
 }
 
 .checkbox-item {
@@ -81,7 +81,7 @@
     padding-left: 35px;
     margin-bottom: 12px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 22px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;

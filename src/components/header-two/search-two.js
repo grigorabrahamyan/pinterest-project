@@ -49,7 +49,7 @@ function SearchBox({topics, chnageTopicsBoxLogHeader}) {
                 />
                 {
                     topics ?
-                    <div className = 'check-topics' >
+                    <div className = 'check-topics' > 
                         {
                             category.map(item => {
                                 return (<label className = 'chackbox-item' >

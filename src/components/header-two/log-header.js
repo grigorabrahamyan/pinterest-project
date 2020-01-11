@@ -66,8 +66,8 @@ function LogHeader({step, topics, changeTopicsBoxHeader, changeLoadingHeader, ch
 
     const classes = useStyles();
 
-    function chnageLogin() {
-        changeLoadingHeader();
+    function chnageLogin(e) {
+        changeLoadingHeader(e);
     }
 
     function changeSignUp() {
