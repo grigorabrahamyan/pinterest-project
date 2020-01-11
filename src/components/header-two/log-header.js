@@ -13,6 +13,9 @@ import AccountSettings from "../user/AccountSettings/AccountSettingsInformation"
 import EditProfile from "../user/EditProfile/editProfile";
 import Home from "../home";
 import { useHistory } from "react-router-dom";
+import Logo from "../header/Logo/logo";
+import MyCreate from "../header/MyCreate/myCreates";
+import {signout} from '../login/firebase/func';
 
 
 const useStyles = makeStyles(theme => ({
@@ -32,7 +35,7 @@ const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
     )} />
 );
 
-function LogHeader({step, topics, changeTopicsBoxHeader}) {
+function LogHeader({step, topics, changeTopicsBoxHeader, changeLoadingHeader, changeSignUpHeader}) {
 
     const[login, setLogin] = useState([
         `home`,
@@ -53,6 +56,19 @@ function LogHeader({step, topics, changeTopicsBoxHeader}) {
     }, [firebase.auth().currentUser]);
 
     const classes = useStyles();
+
+    function chnageLogin(e) {
+        changeLoadingHeader(e);
+    }
+
+    function changeSignUp() {
+        changeSignUpHeader();
+    }
+
+    const userSignOut = useCallback(() => {
+        signout();
+        console.log('User sign out');
+    }, [signout]);
 
     return (
     <Router>
@@ -81,7 +97,7 @@ function LogHeader({step, topics, changeTopicsBoxHeader}) {
                     )}
                 /> */}
             {/* <ComboBox /> */}
-            <SearchBox 
+            <SearchBox
                 topics = {topics}
                 chnageTopicsBoxLogHeader = {changeTopicsBoxHeader}
             />
@@ -121,7 +137,11 @@ function LogHeader({step, topics, changeTopicsBoxHeader}) {
                                                     </Link>
                                                 </MenuItem>
                                                 <MenuItem value={30}>
-                                                    {item[1][2]}
+                                                    <div
+                                                        onClick = {userSignOut}
+                                                    >
+                                                        {item[1][2]}
+                                                    </div>
                                                 </MenuItem>
                                             </Select>
                                         </Button>
@@ -134,7 +154,9 @@ function LogHeader({step, topics, changeTopicsBoxHeader}) {
                                                 size="large"
                                                 className={classes.margin}
                                             >
-                                                <Link to="/">
+                                                <Link
+                                                    to="/"
+                                                >
                                                     {`${item}`}
                                                 </Link>
                                             </Button>
@@ -154,17 +176,35 @@ function LogHeader({step, topics, changeTopicsBoxHeader}) {
                                         )
                                     }
                                 }
-                                return (
-                                    <Button
-                                        className = 'nav-items-item'
-                                        size="large"
-                                        className={classes.margin}
-                                    >
-                                        <Link to="/user/user_creates">
-                                            {`${item}`}
-                                        </Link>
-                                    </Button>
-                                );
+                                {
+                                    if (item === 'login') {
+                                        return (
+                                            <Button
+                                                onClick = {chnageLogin}
+                                                className = 'nav-items-item'
+                                                size="large"
+                                                className={classes.margin}
+                                            >
+                                                {`${item}`}
+                                            </Button>
+                                        );
+                                    }
+                                }
+                                {
+                                    if (item === 'register') {
+                                        return (
+                                            <Button
+                                                onClick = 'changeSignUp'
+                                                className = 'nav-items-item'
+                                                size="large"
+                                                className={classes.margin}
+                                            >
+                                                {`${item}`}
+                                            </Button>
+                                        );
+                                    }
+                                }
+
                              })
                         }
                         {/* <Button 
