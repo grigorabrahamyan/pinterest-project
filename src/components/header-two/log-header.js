@@ -1,31 +1,22 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import createSpacing from '@material-ui/core/styles/createSpacing';
 import firebase from '../login/firebase/firebase';
 import {db} from '../login/firebase/func';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import {signInExistingUsers} from '../login/firebase/func';
-import ComboBox from './search';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import SearchBox from './search-two';
 import UserCreates from "../user_creates";
 import UserSettingsLayout from "../../hoc/Layout/userSettingsLayout";
 import AccountSettings from "../user/AccountSettings/AccountSettingsInformation";
 import EditProfile from "../user/EditProfile/editProfile";
 import Home from "../home";
+import { useHistory } from "react-router-dom";
 import Logo from "../header/Logo/logo";
 import MyCreate from "../header/MyCreate/myCreates";
 import {signout} from '../login/firebase/func';
 
-// import {checkUserLogInOrNot} from '../login/firebase/func';
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -145,7 +136,7 @@ function LogHeader({step, topics, changeTopicsBoxHeader, changeLoadingHeader, ch
                                                     </Link>
                                                 </MenuItem>
                                                 <MenuItem value={30}>
-                                                    <div 
+                                                    <div
                                                         onClick = {userSignOut}
                                                     >
                                                         {item[1][2]}
@@ -212,7 +203,7 @@ function LogHeader({step, topics, changeTopicsBoxHeader, changeLoadingHeader, ch
                                         );
                                     }
                                 }
-                                
+
                              })
                         }
                         {/* <Button 

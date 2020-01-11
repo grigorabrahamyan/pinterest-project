@@ -8,8 +8,9 @@ import UserInputForm from "./userInputForm";
 import "../EditProfile/editProfileFirebase"
 import Button from "@material-ui/core/Button";
 import {db} from "../EditProfile/editProfileFirebase";
+import firebase from "../../login/firebase/firebase";
 import {Link} from "react-router-dom";
-import * as firebase from "firebase";
+import CustomizedSnackbars from "../../alert_messages";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -46,76 +47,53 @@ export default function UserInfoHeader(props) {
 
     const classes = useStyles();
     const baseUrl = "www.pinterestaca.am";
-    let userId = 'ZLrbfZSFQR4dAMRm8NAx';
+    let userId = `${firebase.auth().currentUser.uid}`;
     let docRef = db.collection("users").doc(`${userId}`);
 
     // Create a reference with an initial file path and name
     let storage = firebase.storage();
     let pathReference = storage.ref('/avatars');
 
-    // Create a reference from a Google Cloud Storage URI
-    // let gsReference = storage.refFromURL('gs://pinteresttest-18063.appspot.com/avatars/userAvatar.png')
-
-    // Create a reference from an HTTPS URL
-    // Note that in the URL, characters are URL escaped!
-   // var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg');
-
-/*    useEffect(()=> {
-        // Create a reference to the file we want to download
-        let userAvatarRef = pathReference.child('userAvatar.png');
-
-        // Get the download URL
-        userAvatarRef.getDownloadURL().then(function(url) {
-            console.log(url);
-            setAvatarUrl(url)
-        }).catch(function(error) {
-
-            // A full list of error codes is available at
-            // https://firebase.google.com/docs/storage/web/handle-errors
-            switch (error.code) {
-                case 'storage/object-not-found':
-                    // File doesn't exist
-                    console.log(error.message);
-                    break;
-
-                case 'storage/unauthorized':
-                    // User doesn't have permission to access the object
-                    console.log(error.message);
-                    break;
-
-                case 'storage/canceled':
-                    // User canceled the upload
-                    console.log(error.message);
-                    break;
-
-                case 'storage/unknown':
-                    // Unknown error occurred, inspect the server response
-                    console.log(error.message);
-                    break;
-            }
-        });
-    }, []);*/
-
-
     function updateUserData() {
-        let userDataInfo = db.collection("users").doc(userId);
+        if (firebase.auth().currentUser) {
+            let userDataInfo = db.collection("users").doc(userId);
 
-        return userDataInfo.update({
-            firstName: firstName,
-            lastName: lastName,
-            username: username,
-            userDescription: userDescription,
-            location: location,
-        })
-        .then(function() {
-            console.log("Document successfully updated!");
-        })
-        .catch(function(error) {
-            // The document probably doesn't exist.
-            console.error("Error updating document: ", error);
-            console.error( error.message);
-        });
-
+            return userDataInfo.update({
+                firstName: firstName,
+                lastName: lastName,
+                username: username,
+                userDescription: userDescription,
+                location: location,
+            })
+            .then(function () {
+                setFirstName("");
+                setLastName("");
+                setUsername("");
+                setUserDescription("");
+                setLocation("");
+                setShowAlertMessageText({
+                    messageText: "Document successfully updated!",
+                    messageColor: "success",
+                });
+                setHideAlertMessage(false);
+                setTimeout(()=> {
+                    setHideAlertMessage(true)
+                }, 1000);
+                console.log("Document successfully updated!");
+            })
+            .catch(function (error) {
+                setShowAlertMessageText({
+                    messageText: "Error updating document: ", error,
+                    messageColor: "error",
+                });
+                setHideAlertMessage(false);
+                setTimeout(()=> {
+                    setHideAlertMessage(true)
+                }, 1000);
+                console.error("Error updating document: ", error);
+                console.error(error.message);
+            });
+        }
     }
 
     const [firstName, setFirstName] = useState("");
@@ -124,6 +102,11 @@ export default function UserInfoHeader(props) {
     const [userDescription, setUserDescription] = useState("");
     const [location, setLocation] = useState("");
     const [avatarUrl, setAvatarUrl] = useState("");
+    const [showAlertMessageText, setShowAlertMessageText] = useState({
+                                                                messageText: "",
+                                                                messageColor: "",
+                                                            });
+    const [hideAlertMessage, setHideAlertMessage] = useState(false)
 
     const onFirstNameChange = useCallback((e)=> {
         setFirstName(e);
@@ -213,6 +196,15 @@ export default function UserInfoHeader(props) {
                         label = "Location"/>
                 </Grid>
             </Grid>
+            {hideAlertMessage ?
+                <CustomizedSnackbars
+                    hideAlertMessage={hideAlertMessage}
+                    message={showAlertMessageText.messageText}
+                    color={showAlertMessageText.messageColor}
+                />
+                : ""
+            }
+
         </div>
     )
 };
