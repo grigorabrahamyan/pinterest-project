@@ -56,20 +56,20 @@ function SignIn(props) {
   const handleChangePassword = useCallback((event) => {
     setPassword(event.target.value);
     shortPasswordValidate(event.target.value) ? setErrorPassword(shortPasswordValidate(event.target.value)) : setErrorPassword(false);
-}, []);
+  }, []);
 
-const changeSignUp = () => {
-  changeSignUpSignIn();
-}
+  const changeSignUp = () => {
+    changeSignUpSignIn();
+  }
 
   const handleOnClickSignIn =  useCallback((event) => {
     event.preventDefault();
     if ( errorEmail || errorPassword || !email.length || !password.length ) {
         return null;
     }
-      changeLoginStateLogin();
-      signInExistingUsers(email, password).then(res => console.log(res)).catch((error) => {
-          console.log(error.message);
+      console.log('Hello brather');
+      signInExistingUsers(email, password).then(() => changeLoginStateLogin()).catch((error) => {
+          console.log(error.message , error.code);
           if ( error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' ) {
             setError('Invalid email or password');
           } else if (error.code === 'auth/too-many-requests') {
@@ -78,11 +78,11 @@ const changeSignUp = () => {
       });
     setEmail('');
     setPassword('');
-}, [email, password, errorEmail, errorPassword]);
+  }, [email, password, errorEmail, errorPassword]);
 
-const disappearError = useCallback(() => {
-  error && setError(null)
-},[error]);
+  const disappearError = useCallback(() => {
+    error && setError(null)
+  },[error]);
 
   return (
     <>

@@ -64,7 +64,8 @@
     height: 500px;
     margin-top: 5px;
     border-radius: 10px;
-    background-color: brown;
+    background-color: white;
+    box-shadow: 0 1px 7px;
     overflow-y: scroll;
     transition: 1000ms;
 }

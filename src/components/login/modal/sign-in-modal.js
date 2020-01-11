@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function TransitionsModal(props) {
 
-  const{changeLoginStateApp, renderMainpanelApp} = props;
+  const{changeLoginStateApp, renderMainpanelApp, changeSignUpApp, signUp} = props;
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -46,6 +46,8 @@ export default function TransitionsModal(props) {
         <Fade in={open}>
           <div className={classes.paper}>
             <Login
+              signUp = {signUp}
+              chnageSignUpTransitionsModal = {changeSignUpApp}
               changeLoginStateTransitionModal = {changeLoginStateApp}
               renderMainpanelTransitionModal = {renderMainpanelApp}
             />
