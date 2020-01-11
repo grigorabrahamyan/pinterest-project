@@ -56,7 +56,6 @@ export default function UserInfoHeader(props) {
 
     function updateUserData() {
         if (firebase.auth().currentUser) {
-            console.log(userId)
             let userDataInfo = db.collection("users").doc(userId);
 
             return userDataInfo.update({
@@ -73,19 +72,24 @@ export default function UserInfoHeader(props) {
                 setUserDescription("");
                 setLocation("");
                 setShowAlertMessageText({
-                    show: true,
                     messageText: "Document successfully updated!",
                     messageColor: "success",
                 });
+                setHideAlertMessage(false);
+                setTimeout(()=> {
+                    setHideAlertMessage(true)
+                }, 1000);
                 console.log("Document successfully updated!");
             })
             .catch(function (error) {
-                // The document probably doesn't exist.
                 setShowAlertMessageText({
-                    show: true,
                     messageText: "Error updating document: ", error,
                     messageColor: "error",
                 });
+                setHideAlertMessage(false);
+                setTimeout(()=> {
+                    setHideAlertMessage(true)
+                }, 1000);
                 console.error("Error updating document: ", error);
                 console.error(error.message);
             });
@@ -99,10 +103,10 @@ export default function UserInfoHeader(props) {
     const [location, setLocation] = useState("");
     const [avatarUrl, setAvatarUrl] = useState("");
     const [showAlertMessageText, setShowAlertMessageText] = useState({
-                                                                show: false,
                                                                 messageText: "",
                                                                 messageColor: "",
                                                             });
+    const [hideAlertMessage, setHideAlertMessage] = useState(false)
 
     const onFirstNameChange = useCallback((e)=> {
         setFirstName(e);
@@ -192,9 +196,9 @@ export default function UserInfoHeader(props) {
                         label = "Location"/>
                 </Grid>
             </Grid>
-            {showAlertMessageText.show ?
+            {hideAlertMessage ?
                 <CustomizedSnackbars
-                    showAlertMessageText={showAlertMessageText.show}
+                    hideAlertMessage={hideAlertMessage}
                     message={showAlertMessageText.messageText}
                     color={showAlertMessageText.messageColor}
                 />

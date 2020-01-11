@@ -7,24 +7,31 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const useStyles = makeStyles(theme => ({
-
-}));
+// const useStyles = makeStyles(theme => ({
+//
+// }));
 
 export default function CustomizedSnackbars(props) {
-    const classes = useStyles();
+   // const classes = useStyles();
     const [open, setOpen] = React.useState(false);
 
 
    useEffect(()=> {
-       props.showAlertMessageText ? setOpen(true): setOpen(false);
-   })
+       if (props.hideAlertMessage) {
+           setOpen(true)
+       }
+   },[props.hideAlertMessage])
 
-    const handleClose = (event, reason) => {
+    const handleClose = (event = "click", reason) => {
         if (reason === 'click_away') {
             return;
         }
+
         setOpen(false);
+
+        if (!open) {
+            props.hideAlertMessage = true;
+        }
     };
 
     return (

@@ -12,6 +12,7 @@ import {db} from "../EditProfile/editProfileFirebase";
 import firebase from "../../login/firebase/firebase";
 import {Link} from "react-router-dom";
 import UserDatePicker from "./userDatePicker";
+import CustomizedSnackbars from "../../alert_messages";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -55,6 +56,11 @@ export default function AccountSettings(props) {
     const [userBirthDate, setUserBirthDate] = useState(new Date());
     const [currentDate, setCurrentDate] = useState(new Date());
     let [userAge, setUserAge] = useState("");
+    const [showAlertMessageText, setShowAlertMessageText] = useState({
+        messageText: "",
+        messageColor: "",
+    });
+    const [hideAlertMessage, setHideAlertMessage] = useState(false)
 
     let userId = `${firebase.auth().currentUser.uid}`;
 
@@ -92,9 +98,25 @@ export default function AccountSettings(props) {
                 setGender("");
                 setCountry("");
                 setEmail("");
+                setShowAlertMessageText({
+                    messageText: "Document successfully updated!",
+                    messageColor: "success",
+                });
+                setHideAlertMessage(false);
+                setTimeout(()=> {
+                    setHideAlertMessage(true)
+                }, 1000);
                 console.log("Document successfully updated!");
             })
             .catch(function (error) {
+                setShowAlertMessageText({
+                    messageText: "Error updating document: ", error,
+                    messageColor: "error",
+                });
+                setHideAlertMessage(false);
+                setTimeout(()=> {
+                    setHideAlertMessage(true)
+                }, 1000);
                 // The document probably doesn't exist.
                 console.error("Error updating document: ", error);
             });
@@ -161,6 +183,14 @@ export default function AccountSettings(props) {
                     />
                 </Grid>
             </Grid>
+            {hideAlertMessage ?
+                <CustomizedSnackbars
+                    hideAlertMessage={hideAlertMessage}
+                    message={showAlertMessageText.messageText}
+                    color={showAlertMessageText.messageColor}
+                />
+                : ""
+            }
         </div>
     )
 }
